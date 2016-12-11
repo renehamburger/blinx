@@ -2,14 +2,20 @@
 
 Blinx is a Microsoft Word add-in that converts Bible references within Word into Bible links: Have a look at [this example Word document](docs/Example article with Bible links.doc) or even [this pdf](docs/Example article with Bible links.pdf). These Blinks contain the passage (stored as an endnote in the Word document), which becomes visible as a tooltip when the mouse pointer is hovering over it. They are also hyperlinks to an online Bible ("ctrl-left click" on the link). On computers where the Blinx add-on and [BibleWorks](http://www.bibleworks.com) are installed, a "right-click" on the link opens it directly in BibleWorks.
 
-### Requirements<sup>[**[1]**](#_ftn1)</sup>
+The following screencast demonstrates the main features of the add-in:
+
+<a href="https://youtu.be/aIZdWJ986M4" target="_blank">
+  <img src="assets/blinx_demo.png" alt="Blinx demo" width="392" style="max-width:100%;">
+</a>
+
+### Requirements<sup>[**1**](#_ftn1)</sup>
 - Windows (Windows XP+)
 - Microsoft Word (2003+)
 - Internet Explorer 8+ with an active internet connection or alternatively BibleWorks (7+)
 
 ### Installation
 - Close Microsoft Word and Outlook.
-- Copy "Blinx.dot" into your Microsoft Word start-up folder:<sup>[[2]](#_ftn2)</sup>
+- Copy "Blinx.dot" into your Microsoft Word start-up folder:<sup>[2](#_ftn2)</sup>
   * Possibly: C:\Program Files\Microsoft Office\OfficeXX\Startup
   * or: C:\Documents and Settings\YOUR_USER_NAME\Application Data\Microsoft\Word\Startup
 - The add-in will now be loaded automatically when Word is started.
@@ -26,7 +32,7 @@ Blinx is a Microsoft Word add-in that converts Bible references within Word into
     - Online Bible for hyperlinks
     - Length of passage tooltips
     - Reset Blinx (which can solve a few issues)
-    - Abbreviations for all Bible books, which can be edited with a double-click.<sup>[[3]](#_ftn3)</sup>
+    - Abbreviations for all Bible books, which can be edited with a double-click.<sup>[3](#_ftn3)</sup>
 
 ### Copyright
 - The current version of Blinx obtains Bible passages either from BibleWorks (if installed) or otherwise from [www.biblegateway.com](http://www.biblegateway.com/) for this initial proof of concept.
