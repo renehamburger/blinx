@@ -3,7 +3,7 @@ Attribute VB_Name = "BX"
 Option Explicit
 Option Base 1
 '==============================================================================
-' See "ThisDocument" for license
+' See https://github.com/renehamburger/blinx for source code, manual & license
 '==============================================================================
 
 Private m_eOptions As BX_Options

@@ -12,9 +12,10 @@ Attribute VB_TemplateDerived = False
 Attribute VB_Customizable = False
 '<VBA_INSPECTOR_RUN />
 Option Explicit
+Option Base 1
 '==============================================================================
 ' OnlineBible implementation of IBible interface
-' (See "ThisDocument" for license)
+' See https://github.com/renehamburger/blinx for source code, manual & license
 '==============================================================================
 Implements IBible
 
@@ -161,6 +162,9 @@ Private Function GetOnlinePassage(ByRef sRefString As String, ByVal sVersionIn A
       nPosHeading(2) = FindInHTML(nPosHeading(1), "</span>", False)
       nPosBlock(1) = FindInHTML(nPosHeading(2), "</h1>", True)
       nPosBlock(2) = FindInHTML(nPosBlock(1), "<div class=""footnotes"">", False)
+      If (nPosBlock(2) = 0) Then
+        nPosBlock(2) = FindInHTML(nPosBlock(1), "<div class=""crossrefs", False)
+      End If
       If (nPosHeading(1) > 0 And nPosHeading(2) > 0 And nPosBlock(1) > 0 And nPosBlock(2) > 0) Then
         m_sLastRefIn = sRefString
         m_sLastVersion = sVersion

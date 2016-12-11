@@ -13,7 +13,7 @@ Attribute VB_Customizable = False
 Option Explicit
 '==============================================================================
 ' Interface IBible
-' (See "ThisDocument" for license)
+' See https://github.com/renehamburger/blinx for source code, manual & license
 '==============================================================================
 
 Public Function IsApplicationOK() As Boolean

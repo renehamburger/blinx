@@ -20,7 +20,7 @@ Attribute VB_Customizable = False
 Option Explicit
 Option Base 1
 '==============================================================================
-' See "ThisDocument" for license
+' See https://github.com/renehamburger/blinx for source code, manual & license
 '==============================================================================
 
 Public sRef As String

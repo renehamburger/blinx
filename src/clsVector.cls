@@ -14,7 +14,7 @@ Option Explicit
 Option Base 1
 '==============================================================================
 ' Interface for dynamic vector array
-' See "ThisDocument" for license
+' See https://github.com/renehamburger/blinx for source code, manual & license
 '==============================================================================
 
 Private m_avData() As Variant

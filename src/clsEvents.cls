@@ -13,7 +13,7 @@ Attribute VB_Customizable = False
 Option Explicit
 '==============================================================================
 ' Methods shared by BX module & classes
-' (See "ThisDocument" for license)
+' See https://github.com/renehamburger/blinx for source code, manual & license
 '==============================================================================
 
 Public WithEvents appWord As Word.Application

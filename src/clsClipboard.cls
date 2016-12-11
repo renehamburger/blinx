@@ -13,8 +13,9 @@ Attribute VB_Customizable = False
 Option Explicit
 '==============================================================================
 ' Clipboard class
-' See "ThisDocument" for license for the whole project
-' Based on work by Daniel Cleveland (http://www.francescofoti.com/2013/12/
+' See https://github.com/renehamburger/blinx for source code, manual & license
+'---
+' The code below is based on work by Daniel Cleveland (http://www.francescofoti.com/2013/12/
 ' share-the-clipboard-with-vba-and-the-windows-api/) and Leigh Webber
 ' (https://social.msdn.microsoft.com/Forums/office/en-US/ee9e0d28-0f1e-467f-
 ' 8d1d-1a86b2db2878/a-clipboard-object-for-vba-including-microsoft-word?forum=worddev)

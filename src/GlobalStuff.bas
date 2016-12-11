@@ -4,13 +4,13 @@ Option Explicit
 Option Base 1
 
 '==============================================================================
-' See "ThisDocument" for license
+' See https://github.com/renehamburger/blinx for source code, manual & license
 '==============================================================================
 
 '------------------------------------------------------------------------------
 ' settings
 
-#Const BX_LANGUAGE = "GERMAN" ' "ENGLISH" or "GERMAN"
+#Const BX_LANGUAGE = "ENGLISH" ' "ENGLISH" or "GERMAN"
 
 #If BX_LANGUAGE = "ENGLISH" Then
     Public Const BX_ACTIVE_LANGUAGE = 1
@@ -24,7 +24,7 @@ Public Const BX_TRANSLATION = "ESV#ESV|English Standard Version#NIV|New Internat
 Public Const BX_ONLINE_BIBLE = "esvbible.org#esvbible.org|(ESV with commentary)#biblegateway.com|(All major English Bible versions)#bibleserver.com|(Ideal for German Bible versions)"
 Public Const BX_BLINK_PREVIEW_LENGTH = "5000#100#200#500#1000#2000#5000#unlimited"
 Public Const BX_VERSION = "0.10"
-Public Const BX_VERSION_FULL = "v0.10.1 (26/07/15)"
+Public Const BX_VERSION_FULL = "v0.10.2 (11/12/16)"
 Public Const BX_MAX_CHAPTER = 152
 Public Const BX_MAX_VERSE = 176
 Public Const BX_MAX_NUMBER = 176

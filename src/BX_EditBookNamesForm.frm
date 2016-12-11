@@ -2,10 +2,10 @@ VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} BX_EditBookNamesForm 
    OleObjectBlob   =   "BX_EditBookNamesForm.frx":0000
    Caption         =   "Edit Book Names"
-   ClientHeight    =   3210
-   ClientLeft      =   45
-   ClientTop       =   375
-   ClientWidth     =   4575
+   ClientHeight    =   3216
+   ClientLeft      =   48
+   ClientTop       =   372
+   ClientWidth     =   4572
    StartUpPosition =   1  'CenterOwner
    TypeInfoVer     =   14
 End
@@ -20,7 +20,7 @@ Attribute VB_Customizable = False
 Option Explicit
 Option Base 1
 '==============================================================================
-' See "ThisDocument" for license
+' See https://github.com/renehamburger/blinx for source code, manual & license
 '==============================================================================
 
 Public m_nItem As Integer

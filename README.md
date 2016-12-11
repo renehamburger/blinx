@@ -1,6 +1,6 @@
 # Blinx
 
-Blinx is a Microsoft Word add-in that converts Bible references within Word into Bible links: Have a look at [this example Word document](docs/Example article with Bible links.doc) or even [this pdf](docs/Example article with Bible links.pdf). These Blinks contain the passage (stored as an endnote in the Word document), which becomes visible as a tooltip when the mouse pointer is hovering over it. They are also hyperlinks to an online Bible ("ctrl-left click" on the link) and can function as links to the passage in [BibleWorks](http://www.bibleworks.com), if it installed on the computer ("right-click").
+Blinx is a Microsoft Word add-in that converts Bible references within Word into Bible links: Have a look at [this example Word document](docs/Example article with Bible links.doc) or even [this pdf](docs/Example article with Bible links.pdf). These Blinks contain the passage (stored as an endnote in the Word document), which becomes visible as a tooltip when the mouse pointer is hovering over it. They are also hyperlinks to an online Bible ("ctrl-left click" on the link). On computers where the Blinx add-on and [BibleWorks](http://www.bibleworks.com) are installed, a "right-click" on the link opens it directly in BibleWorks.
 
 ### Requirements<sup>[**[1]**](#_ftn1)</sup>
 - Windows (Windows XP+)
@@ -17,7 +17,7 @@ Blinx is a Microsoft Word add-in that converts Bible references within Word into
 ### Usage
 - **Important: The execution of Blinx can always be interrupted by pressing "Ctrl-Break"**
 - The add-in contains 5 functions that can either be accessed through the Blinx toolbar (in the Add-Ins tab in Word 2007+) or through keyboard shortcuts:
-  * ![Image](assets/clip_image002.jpg) **Create Blink (AltGr-B)**: Converts all Bible references within the selection or the closest one to the left of the cursor into a pure Bible link without passage.
+  * ![Image](assets/clip_image002.jpg) **Create Blink (Alt-B)**: Converts all Bible references within the selection or the closest one to the left of the cursor into a pure Bible link without passage.
   * ![Image](assets/clip_image003.jpg) **Create Blink & tooltip (Alt-B)**: Converts all Bible references within the selection or the closest one to the left of the cursor into a Bible link with the passage as tooltip.
   * ![Image](assets/clip_image004.jpg) **Create Blink & insert text (Alt-Shift-B)**: Converts all Bible references within the selection or the closest one to the left of the cursor into a Bible link and inserts the passage into the text.
   * ![Image](assets/clip_image005.jpg) **Unlink Blinks and Hyperlinks (Alt-U)**: Converts all Blinks or hyperlinks within the selection or the closest one to the left of the cursor into normal text.
@@ -29,7 +29,7 @@ Blinx is a Microsoft Word add-in that converts Bible references within Word into
     - Abbreviations for all Bible books, which can be edited with a double-click.<sup>[[3]](#_ftn3)</sup>
 
 ### Copyright
-- The current version of Blinx obtains Bible passages either from BibleWorks (if installed) or otherwise from [www.biblegateway.com](http://www.biblegateway.com/).
+- The current version of Blinx obtains Bible passages either from BibleWorks (if installed) or otherwise from [www.biblegateway.com](http://www.biblegateway.com/) for this initial proof of concept.
 - All modern Bible versions are copyrighted. See [www.biblegateway.com/version](http://www.biblegateway.com/version) for copyright regulations of various Bible versions. For extensive quotes in a publication (usually if over 200 verses or more than 10% of a biblical book), a permission in writing needs to be obtained from the appropriate copyright owner.
 - Biblegateway.com and BibleWorks do not _appear_ to require any additional copyright notice for quotations acquired through their website/software.
 
@@ -44,6 +44,9 @@ Blinx is a Microsoft Word add-in that converts Bible references within Word into
 Let me know about bugs or improvements that would be useful: [blinx.add.in@gmail.com](mailto:blinx.add.in@gmail.com)
 
 ### Roadmap
+- For the present Word add-on, there are 2 remaining objectives:
+  - Move to a public API like https://bibles.org/pages/api to obtain the online passage.
+  - Allow to switch between English and German Bibles and Bible references through the options dialog. At the moment, such a switch needs to happen in the code and has a couple of bugs.
 - A complete redesign of the core functionality of the plugin into a cross-platform library that could also be made available through a public API would be desirable.
 - A plugin system could be used to add any data source for retrieving Scripture passages (e.g., BibleWorks, Logos, theWord, free online Bibles & Bible APIs).
 - Custom add-ons for Word, Open Office Writer, Adobe Acrobat, Google Docs could then be added to creating Bible links on the fly.

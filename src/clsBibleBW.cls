@@ -12,9 +12,10 @@ Attribute VB_TemplateDerived = False
 Attribute VB_Customizable = False
 '<VBA_INSPECTOR_RUN />
 Option Explicit
+Option Base 1
 '==============================================================================
 ' BibleWorks implementation of IBible interface
-' (See "ThisDocument" for license)
+' See https://github.com/renehamburger/blinx for source code, manual & license
 '==============================================================================
 Implements IBible
 

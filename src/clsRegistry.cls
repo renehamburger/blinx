@@ -12,10 +12,12 @@ Attribute VB_TemplateDerived = False
 Attribute VB_Customizable = False
 '<VBA_INSPECTOR_RUN />
 Option Explicit
+Option Base 1
 '==============================================================================
 ' Basic registry class
-' See "ThisDocument" for license for the whole project
-' The code is based on http://support.microsoft.com/kb/145679
+' See https://github.com/renehamburger/blinx for source code, manual & license
+'---
+' The code below is based on http://support.microsoft.com/kb/145679
 '==============================================================================
 
 Private Const REG_SZ As Long = 1
