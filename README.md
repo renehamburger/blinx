@@ -23,11 +23,11 @@ The following screencast demonstrates the main features of the add-in:
 ### Usage
 - **Important: The execution of Blinx can always be interrupted by pressing "Ctrl-Break"**
 - The add-in contains 5 functions that can either be accessed through the Blinx toolbar (in the Add-Ins tab in Word 2007+) or through keyboard shortcuts:
-  * ![Image](assets/clip_image002.jpg) **Create Blink (Alt-B)**: Converts all Bible references within the selection or the closest one to the left of the cursor into a pure Bible link without passage.
-  * ![Image](assets/clip_image003.jpg) **Create Blink & tooltip (Alt-B)**: Converts all Bible references within the selection or the closest one to the left of the cursor into a Bible link with the passage as tooltip.
-  * ![Image](assets/clip_image004.jpg) **Create Blink & insert text (Alt-Shift-B)**: Converts all Bible references within the selection or the closest one to the left of the cursor into a Bible link and inserts the passage into the text.
-  * ![Image](assets/clip_image005.jpg) **Unlink Blinks and Hyperlinks (Alt-U)**: Converts all Blinks or hyperlinks within the selection or the closest one to the left of the cursor into normal text.
-  * ![Image](assets/clip_image006.jpg) **Open Blinx Options dialog (Ctrl-Alt-Shift-B)**:
+  * <img src="assets/clip_image002.jpg" alt="Create Blink icon" width="20" style="max-width:100%;"> **Create Blink (Alt-B)**: Converts all Bible references within the selection or the closest one to the left of the cursor into a pure Bible link without passage.
+  * <img src="assets/clip_image003.jpg" alt="Create Blink & tooltip icon" width="20" style="max-width:100%;"> **Create Blink & tooltip (Alt-B)**: Converts all Bible references within the selection or the closest one to the left of the cursor into a Bible link with the passage as tooltip.
+  * <img src="assets/clip_image004.jpg" alt="Create Blink & insert text icon" width="20" style="max-width:100%;"> **Create Blink & insert text (Alt-Shift-B)**: Converts all Bible references within the selection or the closest one to the left of the cursor into a Bible link and inserts the passage into the text.
+  * <img src="assets/clip_image005.jpg" alt="Unlink Blinks and hyperlinks icon" width="20" style="max-width:100%;"> **Unlink Blinks and hyperlinks (Alt-U)**: Converts all Blinks or hyperlinks within the selection or the closest one to the left of the cursor into normal text.
+  * <img src="assets/clip_image006.jpg" alt="Open Blinx options dialog icon" width="20" style="max-width:100%;"> **Open Blinx options dialog (Ctrl-Alt-Shift-B)**:
     - Bible translation: ESV, NIV, NASB, KJV, ...
     - Online Bible for hyperlinks
     - Length of passage tooltips
