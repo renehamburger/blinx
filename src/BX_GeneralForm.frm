@@ -299,8 +299,8 @@ End Sub
 
 Private Sub UserForm_Activate()
   bx_sFunction = "GeneralForm_Activate"
-  bOK = False
-  bCancel = False
+'  bOK = False
+'  bCancel = False
 End Sub
 
 

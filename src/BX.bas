@@ -48,7 +48,7 @@ Public Function BX_GetPassage(ByRef sRef As String, Optional ByVal vDisplayVer A
   If (bx_sVariablesLoaded <> "true") Then BX_LoadVariables
   If (BX_InitializeBible()) Then
     If (bx_oB.BeginProcess()) Then
-      If (IsMissing(vDisplayVer)) Then vDisplayVer = GetSetting("Blinx", "Options", "Translation", Split(BX_TRANSLATION, "#")(0))
+      If (IsMissing(vDisplayVer)) Then vDisplayVer = GetSetting("Blinx", "Options", "Version", Split(BX_TRANSLATIONS, "#")(0))
       BX_GetPassage = bx_oB.GetPassage(sRef, vDisplayVer, bSuppressError)
     End If
     bx_oB.EndProcess
@@ -82,7 +82,7 @@ Private Sub BX_MacroEntryPoint()
   On Error GoTo ERR_HANDLER
   bx_sFunction = "BX_MacroEntryPoint"
   Dim sVersion As String
-  sVersion = GetSetting("Blinx", "Options", "Translation", Split(BX_TRANSLATION, "#")(0))
+  sVersion = GetSetting("Blinx", "Options", "Version", Split(BX_TRANSLATIONS, "#")(0))
 
 '---debug:
   bx_sCurrentDocument = ActiveDocument.FullName
@@ -160,7 +160,7 @@ Private Sub BX_CreateAllBlinks(ByVal m_eOptions As BX_Options)
   Dim sVersion As String
 
   '---Prep
-  sVersion = GetSetting("Blinx", "Options", "Translation", Split(BX_TRANSLATION, "#")(0))
+  sVersion = GetSetting("Blinx", "Options", "Version", Split(BX_TRANSLATIONS, "#")(0))
   Set oOldRange = Selection.Range
   nOldRangeLength = oOldRange.End - oOldRange.Start
   nLinksCreated = 0
@@ -261,7 +261,7 @@ Private Sub BX_CreateAllBlinks(ByVal m_eOptions As BX_Options)
               bx_oProcessInputForm.SetWindow ActiveWindow
             End If
             bx_oProcessInputForm.bProcess = True
-            bx_oProcessInputForm.sRef = BX_ReferenceToString(oRef)
+            bx_oProcessInputForm.sRef = BX_ReferenceToString(oRef, bx_eLanguage)
             bx_oProcessInputForm.Show vbModal
             sRef = bx_oProcessInputForm.sRef
             bAcceptAll = bx_oProcessInputForm.bAcceptAll
@@ -322,7 +322,7 @@ Private Function BX_CreateBlinkToLeft(ByVal m_eOptions As BX_Options, Optional B
   Dim oRef As BX_Reference
     
 '---Prep
-  sVersion = GetSetting("Blinx", "Options", "Translation", Split(BX_TRANSLATION, "#")(0))
+  sVersion = GetSetting("Blinx", "Options", "Version", Split(BX_TRANSLATIONS, "#")(0))
   Set oLink = Nothing
   eReturn = BX_UNDEFINED
   bValid = True
@@ -423,7 +423,7 @@ Private Function BX_CreateBlinkToLeft(ByVal m_eOptions As BX_Options, Optional B
     
     '--If links valid, create them
     If (oRef.sBook <> "invalid" And oRef.sBook <> "") Then
-      Set oLink = BX_CreateBlinkHere(m_eOptions, BX_ReferenceToString(oRef), sVersion)
+      Set oLink = BX_CreateBlinkHere(m_eOptions, BX_ReferenceToString(oRef, BX_ENGLISH), sVersion)
       If (Not oLink Is Nothing) Then
         eReturn = BX_LINK_CREATED
       Else
@@ -440,13 +440,13 @@ Private Function BX_CreateBlinkToLeft(ByVal m_eOptions As BX_Options, Optional B
           bx_oProcessInputForm.SetWindow ActiveWindow
         End If
         bx_oProcessInputForm.bProcess = False
-        bx_oProcessInputForm.sRef = BX_ReferenceToString(oRef)
+        bx_oProcessInputForm.sRef = BX_ReferenceToString(oRef, bx_eLanguage)
         bx_oProcessInputForm.Show vbModal
         sRef = bx_oProcessInputForm.sRef
       End If
       If (sRef <> "") Then
         BX_CheckReference sRef, oRef
-        sRef = BX_ReferenceToString(oRef)
+        sRef = BX_ReferenceToString(oRef, BX_ENGLISH)
         Set oLink = BX_CreateBlinkHere(m_eOptions, sRef, sVersion)
         If (Not oLink Is Nothing) Then
           eReturn = BX_LINK_CREATED
@@ -502,7 +502,7 @@ Private Function BX_ReplaceBWHyperlinks(ByVal m_eOptions As BX_Options) As Integ
   Dim nLinksCreated As Integer
   Dim sVersion As String
   
-  sVersion = GetSetting("Blinx", "Options", "Translation", Split(BX_TRANSLATION, "#")(0))
+  sVersion = GetSetting("Blinx", "Options", "Version", Split(BX_TRANSLATIONS, "#")(0))
   Set oRange = Selection.Range
   nLinksCreated = 0
   
@@ -594,10 +594,10 @@ Private Function BX_FillBlink(ByVal m_eOptions As BX_Options, ByVal sText As Str
   Application.ScreenUpdating = False
   
 '---Create content
-  vPreviewLimit = GetSetting("Blinx", "Options", "BlinkPreviewLength", Split(BX_BLINK_PREVIEW_LENGTH, "#")(0))
+  vPreviewLimit = GetSetting("Blinx", "Options", "BlinkPreviewLength", Split(BX_BLINK_PREVIEW_LENGTHS, "#")(0))
   sBeforePass = sRef & " " & ChrW(&H2013&) & " "
   sAfterPass = " (" & sVersion & ")"
-  Select Case GetSetting("Blinx", "Options", "OnlineBible", Split(BX_ONLINE_BIBLE, "#")(0))
+  Select Case GetSetting("Blinx", "Options", "OnlineBible", Split(BX_ONLINE_BIBLES, "#")(0))
     Case "esvbible.org"
       sAddress = "http://www.esvonline.org/search/" & sRef
     Case "bibleserver.com"
@@ -755,75 +755,6 @@ Private Sub BX_TrimToLength(ByRef sText As String, ByVal nLength As Long)
   End If
 End Sub
 
-Private Sub BX_CheckReference(ByVal sRef As String, ByRef oRef As BX_Reference)
-  bx_sFunction = "BX_CheckReference"
-  Dim sTemp As String
-  Dim nI As Integer
-  Dim nJ As Integer
-  Dim bRecognized As Boolean
-  bRecognized = False
-    
-  oRef = BX_StringtToReference(sRef)
-  If (oRef.sBook <> "") Then
-    For nI = 1 To 66
-      For nJ = 2 To bx_asBooks(nI, 1) + 1
-        '--Compare all books (lowercase without spaces)
-        If (Replace(oRef.sBook, " ", "") = Replace(LCase(bx_asBooks(nI, nJ)), " ", "")) Then bRecognized = True
-        '--Allow Roman numbers for books with 1, 2, 3 at start
-        sTemp = ""
-        If (Left(bx_asBooks(nI, nJ), 1) = 1) Then
-          sTemp = "i" & Mid(bx_asBooks(nI, nJ), 2)
-        ElseIf (Left(bx_asBooks(nI, nJ), 1) = 2) Then
-          sTemp = "ii" & Mid(bx_asBooks(nI, nJ), 2)
-        ElseIf (Left(bx_asBooks(nI, nJ), 1) = 3) Then
-          sTemp = "iii" & Mid(bx_asBooks(nI, nJ), 2)
-        End If
-        If (oRef.sBook = LCase(sTemp)) Then bRecognized = True
-        If (bRecognized) Then
-          'oRef.sBook = bx_asBooks(nI, 2)
-          oRef.sBook = Split(BX_BOOK_NAMES_EN, "|")(nI - 1)
-          oRef.nBook = nI
-          nI = 66
-          Exit For
-        End If
-      Next
-    Next
-    '---Resolve books with 1 chapter
-    If (bRecognized) Then
-      If (oRef.nBook = 31 Or oRef.nBook = 57 Or oRef.nBook = 63 Or oRef.nBook = 64 Or oRef.nBook = 65) Then
-        If (oRef.nVerse1 = 0) Then
-          oRef.nVerse1 = oRef.nChapter1
-          oRef.nVerse2 = oRef.nChapter2
-          oRef.nChapter1 = 1
-          oRef.nChapter2 = 1
-        End If
-      End If
-    Else
-      oRef.sBook = "invalid"
-    End If
-  End If
-End Sub
-
-Private Sub BX_CompletePartialReference(ByRef oRef As BX_Reference)
-  bx_sFunction = "BX_CompletePartialReference"
-  Dim bSkip As Boolean
-  bSkip = False
-  
-  '--Check if any of numbers too large
-  If (oRef.nChapter2 > BX_MAX_CHAPTER) Then bSkip = True
-  If (oRef.nVerse2 > BX_MAX_VERSE) Then bSkip = True
-  
-  '--Determine reference
-  If (Not bSkip) Then
-    If (oRef.sBook = "") Then oRef.sBook = bx_oLastValidRef.sBook
-    If (oRef.nChapter1 = 0) Then
-      oRef.nChapter1 = bx_oLastValidRef.nChapter2
-      oRef.nChapter2 = bx_oLastValidRef.nChapter2
-    End If
-  Else
-    oRef.sBook = "invalid"
-  End If
-End Sub
 
 Private Function BX_ExpandReference() As Boolean
   Dim bValid As Boolean

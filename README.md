@@ -47,7 +47,7 @@ The following screencast demonstrates the main features of the add-in:
 - BibleGateway limits passage lookups to about 5500 words.
 - Further issues are mentioned in [Issues.doc](docs/Issues.doc).
 
-Let me know about bugs or improvements that would be useful: [blinx.add.in@gmail.com](mailto:blinx.add.in@gmail.com)
+Let me know about bugs or improvements that would be useful at https://github.com/renehamburger/blinx/issues.
 
 ### Roadmap
 - For the present Word add-on, there are 2 remaining objectives:

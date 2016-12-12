@@ -119,7 +119,7 @@ End Function
 Public Function IBible_GotoPassage(ByVal sRef As String, ByVal sVersion As String) As Boolean
   bx_sFunction = "clsBibleOnline_GotoVerse"
   Dim sLink As String
-  If (GetSetting("Blinx", "Options", "OnlineBible", Split(BX_ONLINE_BIBLE, "#")(0)) = "biblegateway.com") Then
+  If (GetSetting("Blinx", "Options", "OnlineBible", Split(BX_ONLINE_BIBLES, "#")(0)) = "biblegateway.com") Then
     sLink = "https://www.biblegateway.com/passage/?search=" & Replace(sRef, " ", "%20") & "&version=" & sVersion
   Else
     sLink = "http://www.esvbible.org/search/" & sRef

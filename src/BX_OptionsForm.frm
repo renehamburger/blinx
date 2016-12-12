@@ -2,12 +2,12 @@ VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} BX_OptionsForm 
    OleObjectBlob   =   "BX_OptionsForm.frx":0000
    Caption         =   "Blinx Options"
-   ClientHeight    =   4260
-   ClientLeft      =   45
-   ClientTop       =   375
-   ClientWidth     =   6555
+   ClientHeight    =   4680
+   ClientLeft      =   48
+   ClientTop       =   372
+   ClientWidth     =   6552
    StartUpPosition =   2  'CenterScreen
-   TypeInfoVer     =   149
+   TypeInfoVer     =   156
 End
 Attribute VB_Name = "BX_OptionsForm"
 Attribute VB_Base = "0{FF73C92F-0DBB-4E85-81A8-7329DFA2C45E}{0C69B66C-E3B8-4095-9E55-70B5C957169A}"
@@ -28,38 +28,34 @@ Public Sub ReloadBookList()
   Dim nJ As Integer
   Dim nSize As Integer
   
-  BX_LoadVariables
   For nI = 1 To 66
-    nSize = CInt(bx_asBooks(nI, 1))
+    nSize = CInt(bx_asBooks(bx_eLanguage, nI, 1))
     lbx_books.AddItem
     For nJ = 1 To 10
-      lbx_books.List(nI - 1, nJ - 1) = bx_asBooks(nI, nJ + 1)
+      lbx_books.List(nI - 1, nJ - 1) = bx_asBooks(bx_eLanguage, nI, nJ + 1)
     Next
   Next
 End Sub
+
 
 Private Sub lbx_books_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
   bx_oEditBookNamesForm.m_nItem = lbx_books.ListIndex
   bx_oEditBookNamesForm.Show
 End Sub
 
-Private Sub tbx_about_Change()
-
-End Sub
 
 Private Sub UserForm_Initialize()
   bx_sFunction = "OptionsForm_Initialize"
   
-  AddRows cbx_Translation, BX_TRANSLATION
-  AddRows cbx_OnlineBible, BX_ONLINE_BIBLE
-  AddRows cbx_BlinkPreviewLength, BX_BLINK_PREVIEW_LENGTH
+  AddRows cbx_Language, BX_LANGUAGES
+  AddRows cbx_Version, BX_TRANSLATIONS
+  AddRows cbx_OnlineBible, BX_ONLINE_BIBLES
+  AddRows cbx_BlinkPreviewLength, BX_BLINK_PREVIEW_LENGTHS
   
-  tbx_about.Text = "Blinx " & BX_VERSION & " Add-In for Microsoft Word, ©2010-11, Rene Hamburger." & vbCrLf & vbCrLf & _
-                   "This program is free software. Please distribute it together with 'Blinx-Readme.rtf'. Please email bugs/suggestions to: blinx.add.in@gmail.com." & vbCrLf & vbCrLf & _
-                   "I have dedicated this work to our Lord and Saviour! And to the fantastic theological college I have the privilege to train at: www.oakhill.ac.uk. My prayer is that this tool might be as useful to many other Christians and students of God's Word as it has been to me." & vbCrLf & vbCrLf & _
-                   "Full copyright notice:" & vbCrLf & _
-                   "This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version 3 or above (see www.gnu.org/licenses), with the additional restriction of non-commercial use only." & vbCrLf & _
-                   "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details." & vbCrLf & vbCrLf & _
+  tbx_about.Text = "Blinx " & BX_VERSION & " Add-In for Microsoft Word, ©2010-16, Rene Hamburger." & vbCrLf & vbCrLf & _
+                   "This program is free software under the MIT License. See http://github.com/renehamburger/blinx for further details & for filing issues. Feel free to distribute it!" & vbCrLf & vbCrLf & _
+                   "I have dedicated this work to our Lord and Saviour! And to the fantastic theological college I have had the privilege of training at: www.oakhill.ac.uk. My prayer is that this tool might be as useful to many other Christians and students of God's Word as it has been to me." & vbCrLf & vbCrLf & _
+                   "" & vbCrLf & vbCrLf & _
                    "Version: " & BX_VERSION_FULL
   tbx_about.SelStart = 0
   tbx_about.SelLength = 0
@@ -67,9 +63,11 @@ End Sub
 
 Private Sub UserForm_Activate()
   bx_sFunction = "OptionsForm_Activate"
-  SelectItem cbx_Translation, GetSetting("Blinx", "Options", "Translation", Split(BX_TRANSLATION, "#")(0))
-  SelectItem cbx_OnlineBible, GetSetting("Blinx", "Options", "OnlineBible", Split(BX_ONLINE_BIBLE, "#")(0))
-  SelectItem cbx_BlinkPreviewLength, GetSetting("Blinx", "Options", "BlinkPreviewLength", Split(BX_BLINK_PREVIEW_LENGTH, "#")(0))
+  SelectItem cbx_Language, GetSetting("Blinx", "Options", "Language", Split(BX_LANGUAGES, "#")(0))
+  SelectItem cbx_Version, GetSetting("Blinx", "Options", "Version", Split(BX_TRANSLATIONS, "#")(0))
+  SelectItem cbx_OnlineBible, GetSetting("Blinx", "Options", "OnlineBible", Split(BX_ONLINE_BIBLES, "#")(0))
+  SelectItem cbx_BlinkPreviewLength, GetSetting("Blinx", "Options", "BlinkPreviewLength", Split(BX_BLINK_PREVIEW_LENGTHS, "#")(0))
+  BX_LoadVariables
   ReloadBookList
 End Sub
 
@@ -80,9 +78,11 @@ End Sub
 
 Private Sub btn_OK_Click()
   bx_sFunction = "btn_OK_Click"
-  SaveSetting "Blinx", "Options", "Translation", cbx_Translation.Value
+  SaveSetting "Blinx", "Options", "Language", cbx_Language.Value
+  SaveSetting "Blinx", "Options", "Version", cbx_Version.Value
   SaveSetting "Blinx", "Options", "OnlineBible", cbx_OnlineBible.Value
   SaveSetting "Blinx", "Options", "BlinkPreviewLength", cbx_BlinkPreviewLength.Value
+  BX_LoadVariables
   Me.hide
 End Sub
 

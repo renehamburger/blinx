@@ -45,7 +45,7 @@ Private Sub UserForm_Activate()
   Set m_aoBoxes(10) = TextBox10
   
   For nI = 1 To 10
-    m_aoBoxes(nI).Text = bx_asBooks(m_nItem + 1, nI + 1)
+    m_aoBoxes(nI).Text = bx_asBooks(bx_eLanguage, m_nItem + 1, nI + 1)
   Next
 End Sub
 
@@ -54,11 +54,12 @@ Private Sub btn_OK_Click()
   Dim nSize As Integer
   nSize = 0
   For nI = 1 To 10
-   bx_asBooks(m_nItem + 1, nI + 1) = m_aoBoxes(nI).Text
+   bx_asBooks(bx_eLanguage, m_nItem + 1, nI + 1) = m_aoBoxes(nI).Text
    If (m_aoBoxes(nI).Text = "" And nSize = 0) Then nSize = nI - 1
   Next
-  bx_asBooks(m_nItem + 1, 1) = nSize
+  bx_asBooks(bx_eLanguage, m_nItem + 1, 1) = nSize
   BX_SaveVariables
+  BX_LoadVariables
   bx_oOptionsForm.ReloadBookList
   Me.hide
 End Sub

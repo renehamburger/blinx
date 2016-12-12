@@ -10,19 +10,12 @@ Option Base 1
 '------------------------------------------------------------------------------
 ' settings
 
-#Const BX_LANGUAGE = "ENGLISH" ' "ENGLISH" or "GERMAN"
-
-#If BX_LANGUAGE = "ENGLISH" Then
-    Public Const BX_ACTIVE_LANGUAGE = 1
-#Else
-    Public Const BX_ACTIVE_LANGUAGE = 2
-#End If
-
-'Public Const BX_TRANSLATION = "ESV#ESV|English Standard Version#NIV|New International Version#NIB|New International Version (UK)#TNIV|Today's New International Version#NIRV|New International Reader's Version#NASB|New American Standard Bible#KJV|King James Version#NLT|New Living Translation#YLT|Young's Literal Translation"
-Public Const BX_TRANSLATION = "ESV#ESV|English Standard Version#NIV|New International Version#NIB|New International Version (UK)#TNIV|Today's New International Version#NIRV|New International Reader's Version#NASB|New American Standard Bible#KJV|King James Version" & _
+Public Const BX_LANGUAGES = "English#English|e.g., John 3:16,18#German|e.g., Johannes 3,16.18"
+'Public Const BX_TRANSLATIONS = "ESV#ESV|English Standard Version#NIV|New International Version#NIB|New International Version (UK)#TNIV|Today's New International Version#NIRV|New International Reader's Version#NASB|New American Standard Bible#KJV|King James Version#NLT|New Living Translation#YLT|Young's Literal Translation"
+Public Const BX_TRANSLATIONS = "ESV#ESV|English Standard Version#NIV|New International Version#NIB|New International Version (UK)#TNIV|Today's New International Version#NIRV|New International Reader's Version#NASB|New American Standard Bible#KJV|King James Version" & _
                 "#NLT|New Living Translation#YLT|Young's Literal Translation#BGT|BW LXX/Greek NT#ELB|Elberfelder#ZUR|Zürcher#SCL|Schlachter 2000#EIN|Einheitsübersetzung#LUO|Luther 1912#NEU|Neue evangelistische Übersetzung"  'WTT|BW Hebrew OT# leads to crash...
-Public Const BX_ONLINE_BIBLE = "esvbible.org#esvbible.org|(ESV with commentary)#biblegateway.com|(All major English Bible versions)#bibleserver.com|(Ideal for German Bible versions)"
-Public Const BX_BLINK_PREVIEW_LENGTH = "5000#100#200#500#1000#2000#5000#unlimited"
+Public Const BX_ONLINE_BIBLES = "esvbible.org#esvbible.org|(ESV with commentary)#biblegateway.com|(All major English Bible versions)#bibleserver.com|(Ideal for German Bible versions)"
+Public Const BX_BLINK_PREVIEW_LENGTHS = "5000#100#200#500#1000#2000#5000#unlimited"
 Public Const BX_VERSION = "0.10"
 Public Const BX_VERSION_FULL = "v0.10.2 (11/12/16)"
 Public Const BX_MAX_CHAPTER = 152
@@ -46,19 +39,14 @@ Public Const BX_DEFAULT_BOOK_NAMES_EN = _
                 "#2 Timothy|2 Tim|2 Ti|2 Tm#Titus|Tit|Tt#Philemon|Phlm|Phm#Hebrews|Hebr|Heb|Hb#James|Jam|Jas|Js#1 Peter|1 Pet|1 Pe|1 P|1 Pt#2 Peter|2 Pet|2 Pe|2 P|2 Pt#1 John|1 Jo|1 Jn|1 J" & _
                 "#2 John|2 Jo|2 Jn|2 J#3 John|3 Jo|3 Jn|3 J#Jude|Jud|Jd#Revelation|Rev|Rvl|Rv"
 Public Const BX_DEFAULT_BOOK_NAMES_DE = _
-                "1 Mose|1 Mos|Genesis|Gen#2 Mose|2 Mos|Exodus|Exod|Ex#3 Mose|3 Mos|Levitikus|Lev#4 Mose|4 Mos|Numeri|Num#5 Mose|5 Mos|Deuteronomium|Deut|Dtn#Josua|Jos#Richter|Ri#Rut|Rut#1 Samuel|1 Sam#2 Samuel|2 Sam#1 Könige|1 Kön#2 Könige|2 Kön" & _
-                "#1 Chronik|1 Chr#2 Chronik|2 Chr#Esra|Esra#Nehemia|Neh#Ester|Est#Hiob|Hi#Psalmen|Ps#Sprüche|Spr#Prediger|Pred#Hohelied|Hld#Jesaja|Jes#Jeremia|Jer#Klagelieder|Klgl" & _
-                "#Hesekiel|Hes#Daniel|Dan#Hosea|Hos#Joel|Joel#Amos|Am#Obadja|Obd#Jona|Jona#Micha|Mi#Nahum|Nah#Habakuk|Hab#Zefanja|Zef#Haggai|Hag#Sacharja|Sach#Maleachi|Mal" & _
-                "#Matthäus|Mt#Markus|Mk#Lukas|Lk#Johannes|Joh#Apostelgeschichte|Apg#Römer|Röm#1 Korinther|1 Kor#2 Korinther|2 Kor#Galater|Gal#Epheser|Eph#Philipper|Phil#Kolosser|Kol" & _
-                "#1 Thessalonicher|1 Thess#2 Thessalonicher|2 Thess#1 Timotheus|1 Tim#2 Timotheus|2 Tim#Titus|Tit#Philemon|Phlm#Hebräer|Hebr#Jakobus|Jak#1 Petrus|1 Petr#2 Petrus|2 Petr" & _
-                "#1 Johannes|1 Joh#2 Johannes|2 Joh#3 Johannes|3 Joh#Judas|Jud#Offenbarung|Offb"
-#If BX_LANGUAGE = "ENGLISH" Then
-    Public Const BX_DEFAULT_CHAPTER_VERSE_SEPARATORS = ":|."
-    Public Const BX_DEFAULT_SEPARATORS = ",|;"
-#Else
-    Public Const BX_DEFAULT_CHAPTER_VERSE_SEPARATORS = ","
-    Public Const BX_DEFAULT_SEPARATORS = ".|;"
-#End If
+                "1 Mose|1 Mos|1 Mo|Genesis|Gen|Gn#2 Mose|2 Mos|2 Mo|Exodus|Exod|Ex#3 Mose|3 Mos|3 Mo|Levitikus|Lev|Lv#4 Mose|4 Mos|4 Mo|Numeri|Num|Nm#5 Mose|5 Mos|5 Mo|Deuteronomium|Deut|Dtn|Dt" & _
+                "#Josua|Jos#Richter|Rich|Ri#Rut|Ru#1 Samuel|1 Sam|1 Sa#2 Samuel|2 Sam|2 Sa#1 Könige|1 Kön|1 Kng|1 Kö#2 Könige|2 Kön|2 Kng|2 Kö#1 Chronik|1 Chron|1 Chr#2 Chronik|2 Chron|2 Chr" & _
+                "#Esra|Esr#Nehemia|Neh#Ester|Est#Hiob|Ijob|Job#Psalmen|Psalm|Pslm|Ps#Sprüche|Sprichwörter|Spr#Prediger|Pred|Kohelet|Koh|Ecclesiastes#Hohelied|Hoheslied|Hld#Jesaja|Jes#Jeremia|Jer#Klagelieder|Klgl" & _
+                "#Hesekiel|Hesek|Hes|Ezechiel|Ez#Daniel|Dan#Hosea|Hos#Joel#Amos#Obadja|Obad|Obd#Jona#Micha|Mich#Nahum|Nah#Habakuk|Hab#Zefanja|Zef#Haggai|Hagg|Hag#Sacharja|Sach#Maleachi|Mal" & _
+                "#Matthäus|Matt|Mt#Markus|Mark|Mk#Lukas|Luk|Lk#Johannes|Joh#Apostelgeschichte|Apg#Römer|Röm|Rm#1 Korinther|1 Kor|1 Ko#2 Korinther|2 Kor|2 Ko#Galater|Gal" & _
+                "#Epheser|Eph#Philipper|Phil#Kolosser|Kol#1 Thessalonicher|1 Thess|1 Th#2 Thessalonicher|2 Thess|2 Th#1 Timotheus|1 Tim#2 Timotheus|2 Tim#Titus|Tit" & _
+                "#Philemon|Phlm|Phm#Hebräer|Hebr|Heb|Hb#Jakobus|Jak|Jk#1 Petrus|1 Petr|1 Pet|1 Pt#2 Petrus|2 Petr|2 Pet|2 Pt" & _
+                "#1 Johannes|1 Joh|1 Jo#2 Johannes|2 Joh|2 Jo#3 Johannes|3 Joh|3 Jo#Judas|Jud#Offenbarung|Offb"
 Public Const BX_MAX_SENTENCE_LETTER = "e"
 
 '------------------------------------------------------------------------------
@@ -80,6 +68,12 @@ Public Const BX_MAX_SENTENCE_LETTER = "e"
   'Public Declare Function SetWindowLong Lib "user32.dll" Alias "SetWindowLongA" (ByVal hwnd As Long, ByVal nIndex As Long, ByVal dwNewLong As Long) As Long
 #End If
 '------------------------------------------------------------------------------
+
+Public Enum BX_Language
+  BX_NO_LANGUAGE = 0
+  BX_ENGLISH = 1
+  BX_GERMAN = 2
+End Enum
 
 Public Enum BX_ReturnValue
   BX_UNDEFINED
@@ -181,11 +175,6 @@ Public Enum BX_BOOKS 'First 3 characters, except for Judges (JDG) and Philemon (
   BX_BK_REV = 66
 End Enum
 
-Public Enum BX_POSSIBLE_LANGUAGES
-  BX_LANGUAGE_ENGLISH = 1
-  BX_LANGUAGE_GERMAN = 2
-End Enum
-
 Public Type BX_Reference
   sBook As String
   nBook As Integer
@@ -200,13 +189,14 @@ End Type
 
 '------------------------------------------------------------------------------
 
+Public bx_eLanguage As BX_Language
 Public bx_oLastValidRef As BX_Reference
 Public bx_oB As IBible
 Public bx_oClip As New clsClipboard
 Public bx_sFunction As String
 Public bx_vTimeWarningOnline As Variant
 Public bx_sVariablesLoaded As String
-Public bx_asBooks(66, 11) As String
+Public bx_asBooks(2, 66, 11) As String
 Public bx_asChVsSeparators() As String
 Public bx_asSeparators() As String
 Public bx_oCompoundBooks As New clsVector
@@ -237,36 +227,53 @@ Public Sub BX_LoadVariables()
   bx_sFunction = "BX_LoadVariables"
   Dim nI As Integer
   Dim nJ As Integer
-  Dim sString As String
+  Dim sBooks As String
   Dim nSize As Integer
+  Dim eLanguage As BX_Language
+  Dim sChapterVerseSeparators As String
+  Dim sSeparators As String
+  Dim sCurrentLanguage As String
   
-  For nI = 1 To 66
-    If BX_ACTIVE_LANGUAGE = 1 Then
-      sString = GetSetting("Blinx", "Books.en", "Book" & Format(nI, "00"), Split(BX_DEFAULT_BOOK_NAMES_EN, "#")(nI - 1))
-    Else
-      sString = GetSetting("Blinx", "Books.de", "Book" & Format(nI, "00"), Split(BX_DEFAULT_BOOK_NAMES_DE, "#")(nI - 1))
-    End If
-    nSize = CInt(BX_CountInStr(sString, "|") + 1)
-    If (nSize > 10) Then nSize = 10
-    bx_asBooks(nI, 1) = nSize
-    For nJ = 2 To nSize + 1
-      bx_asBooks(nI, nJ) = Split(sString, "|")(nJ - 2)
-      If (BX_InStr(1, bx_asBooks(nI, nJ), " ") > 0 And Not BX_TestChar(Left(bx_asBooks(nI, nJ), 1), BX_BOOK_NUMBER)) Then bx_oCompoundBooks.Add (bx_asBooks(nI, nJ))
+  sCurrentLanguage = GetSetting("Blinx", "Options", "Language", Split(BX_LANGUAGES, "#")(0))
+   
+  Select Case sCurrentLanguage
+    Case "English"
+      bx_eLanguage = BX_ENGLISH
+      sChapterVerseSeparators = GetSetting("Blinx", "Options", "ChapterVerseSeparators.en", ":|.")
+      sSeparators = GetSetting("Blinx", "Options", "Separators.en", ",|;")
+    Case "German"
+      bx_eLanguage = BX_GERMAN
+      sChapterVerseSeparators = GetSetting("Blinx", "Options", "ChapterVerseSeparators.de", ",")
+      sSeparators = GetSetting("Blinx", "Options", "Separators.de", ".|;")
+  End Select
+  
+  For eLanguage = BX_ENGLISH To BX_GERMAN
+    For nI = 1 To 66
+      If eLanguage = BX_ENGLISH Then
+        sBooks = GetSetting("Blinx", "Books.en", "Book" & Format(nI, "00"), Split(BX_DEFAULT_BOOK_NAMES_EN, "#")(nI - 1))
+      Else
+        sBooks = GetSetting("Blinx", "Books.de", "Book" & Format(nI, "00"), Split(BX_DEFAULT_BOOK_NAMES_DE, "#")(nI - 1))
+      End If
+      nSize = CInt(BX_CountInStr(sBooks, "|") + 1)
+      If (nSize > 10) Then nSize = 10
+      bx_asBooks(eLanguage, nI, 1) = nSize
+      For nJ = 2 To nSize + 1
+        bx_asBooks(eLanguage, nI, nJ) = Split(sBooks, "|")(nJ - 2)
+        If (BX_InStr(1, bx_asBooks(eLanguage, nI, nJ), " ") > 0 And Not BX_TestChar(Left(bx_asBooks(eLanguage, nI, nJ), 1), BX_BOOK_NUMBER)) Then bx_oCompoundBooks.Add (bx_asBooks(eLanguage, nI, nJ))
+      Next
     Next
   Next
   
-  sString = BX_DEFAULT_CHAPTER_VERSE_SEPARATORS 'GetSetting("Blinx", "Options", "ChapterVerseSeparators", BX_DEFAULT_CHAPTER_VERSE_SEPARATORS)
-  nSize = CInt(BX_CountInStr(sString, "|") + 1)
+  nSize = CInt(BX_CountInStr(sChapterVerseSeparators, "|") + 1)
   ReDim bx_asChVsSeparators(nSize)
   For nI = 1 To nSize
-    bx_asChVsSeparators(nI) = Split(sString, "|")(nI - 1)
+    bx_asChVsSeparators(nI) = Split(sChapterVerseSeparators, "|")(nI - 1)
   Next
   
-  sString = GetSetting("Blinx", "Options", "Separators", BX_DEFAULT_SEPARATORS)
-  nSize = CInt(BX_CountInStr(sString, "|") + 1)
+  nSize = CInt(BX_CountInStr(sSeparators, "|") + 1)
   ReDim bx_asSeparators(nSize)
   For nI = 1 To nSize
-    bx_asSeparators(nI) = Split(sString, "|")(nI - 1)
+    bx_asSeparators(nI) = Split(sSeparators, "|")(nI - 1)
   Next
   
   bx_sVariablesLoaded = "true"
@@ -278,18 +285,21 @@ Public Sub BX_SaveVariables()
   Dim nJ As Integer
   Dim sString As String
   Dim nSize As Integer
+  Dim eLanguage As BX_Language
   
-  For nI = 1 To 66
-    nSize = CInt(bx_asBooks(nI, 1))
-    sString = CStr(bx_asBooks(nI, 2))
-    For nJ = 3 To nSize + 1
-      sString = sString & "|" & bx_asBooks(nI, nJ)
+  For eLanguage = BX_ENGLISH To BX_GERMAN
+    For nI = 1 To 66
+      nSize = CInt(bx_asBooks(eLanguage, nI, 1))
+      sString = CStr(bx_asBooks(eLanguage, nI, 2))
+      For nJ = 3 To nSize + 1
+        sString = sString & "|" & bx_asBooks(eLanguage, nI, nJ)
+      Next
+      If eLanguage = BX_ENGLISH Then
+        SaveSetting "Blinx", "Books.en", "Book" & Format(nI, "00"), sString
+      Else
+        SaveSetting "Blinx", "Books.de", "Book" & Format(nI, "00"), sString
+      End If
     Next
-    If BX_ACTIVE_LANGUAGE = 1 Then
-      SaveSetting "Blinx", "Books.en", "Book" & Format(nI, "00"), sString
-    Else
-      SaveSetting "Blinx", "Books.de", "Book" & Format(nI, "00"), sString
-    End If
   Next
   
   sString = ""
@@ -306,6 +316,7 @@ Public Sub BX_SaveVariables()
   Next
   SaveSetting "Blinx", "Options", "Separators", sString
 End Sub
+
 
 Public Sub BX_FocusBW()
   bx_sFunction = "BX_FocusBW"
@@ -483,7 +494,7 @@ Public Function BX_GetDataFromLink(ByVal oSel As Selection, ByRef oRef As BX_Ref
   BX_GetDataFromLink = bReturn
 End Function
 
-Public Function BX_ReplaceReservedCharacters(sStr As String)
+Public Sub BX_ReplaceReservedCharacters(sStr As String)
   bx_sFunction = "BX_ReplaceReservedCharacters"
   Dim nPos As Long
   Dim sCode As String
@@ -495,7 +506,7 @@ Public Function BX_ReplaceReservedCharacters(sStr As String)
     nCode = CLng("&H" & sCode)
     sStr = Left(sStr, nPos - 1) & Chr(nCode) & Mid(sStr, nPos + 3)
   Loop
-End Function
+End Sub
 
 Public Sub BX_CleanReference(ByRef sRef As String, Optional bAllLowerCase As Boolean = True)
   bx_sFunction = "BX_CleanReference"
@@ -674,16 +685,45 @@ Public Function BX_StringtToReference(ByVal sRefIn As String, Optional ByVal bAl
   BX_StringtToReference = oRef
 End Function
 
-Public Function BX_ReferenceToString(ByRef oRef As BX_Reference, Optional ByVal bIncludeSentenceLetters As Boolean = False) As String
+Public Function BX_ReferenceToString(ByRef oRef As BX_Reference, Optional ByVal eLanguage As BX_Language = BX_NO_LANGUAGE, _
+    Optional ByVal bIncludeSentenceLetters As Boolean = False) As String
   Dim sRef As String
-  
+  Dim oRefForBook As BX_Reference
+  Dim sChVsSeparator As String
   sRef = ""
+  
   If (oRef.sBook <> "invalid") Then
-    sRef = oRef.sBook
+    If (eLanguage = BX_NO_LANGUAGE) Then
+      sRef = oRef.sBook
+      sChVsSeparator = ":"
+    Else
+      If (oRef.nBook > 0) Then
+        sRef = bx_asBooks(eLanguage, oRef.nBook, 2)
+      ElseIf (oRef.sBook <> "") Then
+        ' oRef.sBook may have been entered by the user
+        BX_CheckReference oRef.sBook & " 1", oRefForBook, bx_eLanguage
+        If (oRefForBook.sBook = "invalid") Then
+          ' ... or generated in English (Admittedly pretty messy!)
+          BX_CheckReference oRef.sBook & " 1", oRefForBook, BX_ENGLISH
+        Else
+          sRef = sRef
+        End If
+        If (oRefForBook.sBook <> "invalid") Then
+          sRef = bx_asBooks(eLanguage, oRefForBook.nBook, 2)
+        End If
+      End If
+      If (eLanguage = bx_eLanguage) Then
+        sChVsSeparator = bx_asChVsSeparators(1)
+      ElseIf (eLanguage = BX_ENGLISH) Then
+        sChVsSeparator = ":"
+      Else
+        sChVsSeparator = ","
+      End If
+    End If
     If (oRef.nChapter1 <> 0) Then sRef = sRef & " " & CStr(oRef.nChapter1)
     If (oRef.nVerse1 <> 0) Then
       If (oRef.nChapter1 <> 0) Then
-        sRef = sRef & ":" & CStr(oRef.nVerse1)
+        sRef = sRef & sChVsSeparator & CStr(oRef.nVerse1)
       Else
         sRef = sRef & " " & CStr(oRef.nVerse1)
       End If
@@ -692,7 +732,7 @@ Public Function BX_ReferenceToString(ByRef oRef As BX_Reference, Optional ByVal 
     If (oRef.nChapter2 <> oRef.nChapter1) Then sRef = sRef & "-" & CStr(oRef.nChapter2)
     If (oRef.nVerse2 <> oRef.nVerse1 Or (oRef.nChapter2 <> oRef.nChapter1 And oRef.nVerse1 <> 0)) Then
       If (oRef.nChapter2 <> oRef.nChapter1) Then
-        sRef = sRef & ":" & CStr(oRef.nVerse2)
+        sRef = sRef & sChVsSeparator & CStr(oRef.nVerse2)
       Else
         sRef = sRef & "-" & CStr(oRef.nVerse2)
       End If
@@ -703,32 +743,77 @@ Public Function BX_ReferenceToString(ByRef oRef As BX_Reference, Optional ByVal 
   BX_ReferenceToString = sRef
 End Function
 
-'Public Function BX_GetBookNameInLanguage(ByVal nBook As Integer, Optional ByVal bForOnlineBible = False) As String
-'  Dim sVersion As String
-'  Dim sOnlineBible As String
-'  Dim sReturn As String
-'  sVersion = GetSetting("Blinx", "Options", "Translation", Split(BX_TRANSLATION, "#")(0))
-'  sOnlineBible = GetSetting("Blinx", "Options", "OnlineBible", Split(BX_ONLINE_BIBLE, "#")(0))
-'  sReturn = ""
-'
-'  If (nBook >= 1 And nBook <= 66) Then
-'    If (Not bForOnlineBible Or sOnlineBible = "bibleserver.com") Then
-'      Select Case sVersion
-'        Case "ELB", "ZUR", "SCL", "EIN", "LUO"
-'          sReturn = Split(BX_DEFAULT_BOOK_NAMES_DE, "#")(nBook - 1)
-'          sReturn = Split(sReturn, "|")(0)
-'        Case Else
-'          sReturn = Split(BX_DEFAULT_BOOK_NAMES_EN, "#")(nBook - 1)
-'          sReturn = Split(sReturn, "|")(0)
-'      End Select
-'    Else
-'      sReturn = Split(BX_DEFAULT_BOOK_NAMES_EN, "#")(nBook - 1)
-'      sReturn = Split(sReturn, "|")(0)
-'    End If
-'  End If
-'
-'  BX_GetBookNameInLanguage = sReturn
-'End Function
+Public Sub BX_CheckReference(ByVal sRef As String, ByRef oRef As BX_Reference, Optional eLanguage As BX_Language = 0)
+  bx_sFunction = "BX_CheckReference"
+  Dim sTemp As String
+  Dim nI As Integer
+  Dim nJ As Integer
+  Dim bRecognized As Boolean
+  bRecognized = False
+
+  If (eLanguage = 0) Then eLanguage = bx_eLanguage
+
+  oRef = BX_StringtToReference(sRef)
+  If (oRef.sBook <> "") Then
+    For nI = 1 To 66
+      For nJ = 2 To bx_asBooks(eLanguage, nI, 1) + 1
+        '--Compare all books (lowercase without spaces)
+        If (Replace(oRef.sBook, " ", "") = Replace(LCase(bx_asBooks(eLanguage, nI, nJ)), " ", "")) Then bRecognized = True
+        '--Allow Roman numbers for books with 1, 2, 3 at start
+        sTemp = ""
+        If (Left(bx_asBooks(eLanguage, nI, nJ), 1) = 1) Then
+          sTemp = "i" & Mid(bx_asBooks(eLanguage, nI, nJ), 2)
+        ElseIf (Left(bx_asBooks(eLanguage, nI, nJ), 1) = 2) Then
+          sTemp = "ii" & Mid(bx_asBooks(eLanguage, nI, nJ), 2)
+        ElseIf (Left(bx_asBooks(eLanguage, nI, nJ), 1) = 3) Then
+          sTemp = "iii" & Mid(bx_asBooks(eLanguage, nI, nJ), 2)
+        End If
+        If (oRef.sBook = LCase(sTemp)) Then bRecognized = True
+        If (bRecognized) Then
+          oRef.sBook = bx_asBooks(eLanguage, nI, 2)
+          'oRef.sBook = Split(BX_BOOK_NAMES_EN, "|")(nI - 1)
+          oRef.nBook = nI
+          nI = 66
+          Exit For
+        End If
+      Next
+    Next
+    '---Resolve books with 1 chapter
+    If (bRecognized) Then
+      If (oRef.nBook = 31 Or oRef.nBook = 57 Or oRef.nBook = 63 Or oRef.nBook = 64 Or oRef.nBook = 65) Then
+        If (oRef.nVerse1 = 0) Then
+          oRef.nVerse1 = oRef.nChapter1
+          oRef.nVerse2 = oRef.nChapter2
+          oRef.nChapter1 = 1
+          oRef.nChapter2 = 1
+        End If
+      End If
+    Else
+      oRef.sBook = "invalid"
+    End If
+  End If
+End Sub
+
+Public Sub BX_CompletePartialReference(ByRef oRef As BX_Reference)
+  bx_sFunction = "BX_CompletePartialReference"
+  Dim bSkip As Boolean
+  bSkip = False
+  
+  '--Check if any of numbers too large
+  If (oRef.nChapter2 > BX_MAX_CHAPTER) Then bSkip = True
+  If (oRef.nVerse2 > BX_MAX_VERSE) Then bSkip = True
+  
+  '--Determine reference
+  If (Not bSkip) Then
+    If (oRef.sBook = "") Then oRef.sBook = bx_oLastValidRef.sBook
+    If (oRef.nChapter1 = 0) Then
+      oRef.nChapter1 = bx_oLastValidRef.nChapter2
+      oRef.nChapter2 = bx_oLastValidRef.nChapter2
+    End If
+  Else
+    oRef.sBook = "invalid"
+  End If
+End Sub
 
 Public Function BX_Superscript(ByVal sText As String, Optional bAsHTML As Boolean = False) As String
   bx_sFunction = "BX_Superscript"
@@ -928,10 +1013,10 @@ Public Function BX_TestChar(ByVal sString As String, ByVal nCharTypes As Integer
     End If
     
     If (Not bEqual And ((BX_LETTER And nCharTypes) <> 0)) Then
-      Select Case BX_ACTIVE_LANGUAGE
-        Case 1 'English
+      Select Case bx_eLanguage
+        Case BX_ENGLISH
           bEqual = ((AscW(sChar) >= AscW("a") And AscW(sChar) <= AscW("z")) Or (AscW(sChar) >= AscW("A") And AscW(sChar) <= AscW("Z")))
-        Case 2 'German
+        Case BX_GERMAN
           bEqual = ((AscW(sChar) >= AscW("a") And AscW(sChar) <= AscW("z")) Or (AscW(sChar) >= AscW("A") And AscW(sChar) <= AscW("Z"))) _
                     Or (AscW(sChar) = AscW("ä")) Or (AscW(sChar) = AscW("Ä")) Or (AscW(sChar) = AscW("ö")) Or (AscW(sChar) = AscW("Ö")) Or (AscW(sChar) = AscW("ü")) Or (AscW(sChar) = AscW("Ü")) Or (AscW(sChar) = AscW("ß"))
         Case Default 'other
