@@ -17,7 +17,7 @@ Public Const BX_TRANSLATIONS = "ESV#ESV|English Standard Version#NIV|New Interna
 Public Const BX_ONLINE_BIBLES = "esvbible.org#esvbible.org|(ESV with commentary)#biblegateway.com|(All major English Bible versions)#bibleserver.com|(Ideal for German Bible versions)"
 Public Const BX_BLINK_PREVIEW_LENGTHS = "5000#100#200#500#1000#2000#5000#unlimited"
 Public Const BX_VERSION = "0.10"
-Public Const BX_VERSION_FULL = "v0.10.2 (11/12/16)"
+Public Const BX_VERSION_FULL = "v0.10.3 (27/01/17)"
 Public Const BX_MAX_CHAPTER = 152
 Public Const BX_MAX_VERSE = 176
 Public Const BX_MAX_NUMBER = 176
@@ -406,90 +406,96 @@ Public Function BX_GetDataFromLink(ByVal oSel As Selection, ByRef oRef As BX_Ref
   Dim nEnd3 As Long
   Dim sReference As String
   Dim bReturn As Boolean
+  Dim sTarget As String
+  Dim asParts() As String
   
   bReturn = False
   sReference = ""
   If (Not IsMissing(sVersion)) Then sVersion = ""
   
   If (oSel.Hyperlinks.Count() = 1) Then
-    '<VBA_INSPECTOR>
-    ' <CHANGE>
-    '   <MESSAGE>Potentially contains changed items in the object model</MESSAGE>
-    '   <ITEM>[wrd]Hyperlink.Address</ITEM>
-    '   <URL>http://go.microsoft.com/fwlink/?LinkID=215366 </URL>
-    ' </CHANGE>
-    '</VBA_INSPECTOR>
-    sAdd = oSel.Hyperlinks(1).Address()
-    BX_ReplaceReservedCharacters sAdd
-  '---Check for biblegateway
-    nStart1 = InStr(1, sAdd, "www.biblegateway.com")
-    If (nStart1 > 0) Then
-      nStart2 = InStr(nStart1, sAdd, "search=")
-      nStart3 = InStr(nStart1, sAdd, "version=")
-      If (nStart2 > 0) Then
-        nEnd2 = InStr(nStart2, sAdd, "&")
-        If (nStart3 > 0 And Not IsMissing(sVersion)) Then
-          nEnd3 = InStr(nStart3, sAdd, "&")
-          If (nEnd3 > 0) Then
-            sVersion = Mid(sAdd, nStart3 + 8, nEnd3 - nStart3)
-          Else
-            sVersion = Mid(sAdd, nStart3 + 8, Len(sAdd) - nStart3)
-          End If
-        End If
-        If (nEnd2 > 0) Then
-          sReference = Mid(sAdd, nStart2 + 7, nEnd2 - nStart2 - 7)
-        Else
-          sReference = Mid(sAdd, nStart2 + 7, Len(sAdd) - nStart2)
-        End If
+    sTarget = oSel.Hyperlinks(1).Target
+    asParts = Split(sTarget, ";")
+    '---Blinx links contain the passage as hyperlink target
+    If (Left(sTarget, 14) = "BX_BibRef_0.6;") Then
+        sVersion = asParts(1)
+        sReference = asParts(2)
+        oRef = BX_StringtToReference(sReference, False, ":")
         bReturn = True
-      End If
+    '---Other hyperlinks could be parsed, too
     Else
-  '---Check for esvstudybible (former website of esvonline)
-      nStart1 = InStr(1, sAdd, "www.esvstudybible.org")
+      sAdd = oSel.Hyperlinks(1).Address()
+      BX_ReplaceReservedCharacters sAdd
+    '---Check for biblegateway
+      nStart1 = InStr(1, sAdd, "www.biblegateway.com")
       If (nStart1 > 0) Then
-        nStart2 = InStr(nStart1, sAdd, "search?q=")
+        nStart2 = InStr(nStart1, sAdd, "search=")
+        nStart3 = InStr(nStart1, sAdd, "version=")
         If (nStart2 > 0) Then
-          nEnd2 = Len(sAdd)
-          sReference = Mid(sAdd, nStart2 + 9, nEnd2 - nStart2 - 8)
-          If (IsMissing(sVersion)) Then sVersion = "ESV"
+          nEnd2 = InStr(nStart2, sAdd, "&")
+          If (nStart3 > 0 And Not IsMissing(sVersion)) Then
+            nEnd3 = InStr(nStart3, sAdd, "&")
+            If (nEnd3 > 0) Then
+              sVersion = Mid(sAdd, nStart3 + 8, nEnd3 - nStart3)
+            Else
+              sVersion = Mid(sAdd, nStart3 + 8, Len(sAdd) - nStart3)
+            End If
+          End If
+          If (nEnd2 > 0) Then
+            sReference = Mid(sAdd, nStart2 + 7, nEnd2 - nStart2 - 7)
+          Else
+            sReference = Mid(sAdd, nStart2 + 7, Len(sAdd) - nStart2)
+          End If
           bReturn = True
         End If
       Else
-    '---Check for esvonline with "/search"
-        nStart1 = InStr(1, sAdd, "www.esvonline.org/search/")
+    '---Check for esvstudybible (former website of esvonline)
+        nStart1 = InStr(1, sAdd, "www.esvstudybible.org")
         If (nStart1 > 0) Then
-          nStart2 = nStart1 + Len("www.esvonline.org/search/")
-          nEnd2 = Len(sAdd)
-          sReference = Mid(sAdd, nStart2, nEnd2 - nStart2 + 1)
-          If (IsMissing(sVersion)) Then sVersion = "ESV"
-          bReturn = True
+          nStart2 = InStr(nStart1, sAdd, "search?q=")
+          If (nStart2 > 0) Then
+            nEnd2 = Len(sAdd)
+            sReference = Mid(sAdd, nStart2 + 9, nEnd2 - nStart2 - 8)
+            If (IsMissing(sVersion)) Then sVersion = "ESV"
+            bReturn = True
+          End If
         Else
-    '---Check for esvonline without "/search"
-          nStart1 = InStr(1, sAdd, "www.esvonline.org")
+      '---Check for esvonline with "/search"
+          nStart1 = InStr(1, sAdd, "www.esvonline.org/search/")
           If (nStart1 > 0) Then
-            nStart2 = nStart1 + Len("www.esvonline.org") + 1
+            nStart2 = nStart1 + Len("www.esvonline.org/search/")
             nEnd2 = Len(sAdd)
             sReference = Mid(sAdd, nStart2, nEnd2 - nStart2 + 1)
             If (IsMissing(sVersion)) Then sVersion = "ESV"
             bReturn = True
           Else
-    '---Check for esvonline without "/search"
-            nStart1 = InStr(1, sAdd, "www.bibleserver.com/text/")
+      '---Check for esvonline without "/search"
+            nStart1 = InStr(1, sAdd, "www.esvonline.org")
             If (nStart1 > 0) Then
-              nStart2 = nStart1 + Len("www.bibleserver.com/text/")
+              nStart2 = nStart1 + Len("www.esvonline.org") + 1
               nEnd2 = Len(sAdd)
-              sReference = Mid(sAdd, nStart2 + 4, nEnd2 - nStart2 + 1)
-              sVersion = Mid(sAdd, nStart2, nStart2 + 3)
+              sReference = Mid(sAdd, nStart2, nEnd2 - nStart2 + 1)
               If (IsMissing(sVersion)) Then sVersion = "ESV"
               bReturn = True
+            Else
+      '---Check for esvonline without "/search"
+              nStart1 = InStr(1, sAdd, "www.bibleserver.com/text/")
+              If (nStart1 > 0) Then
+                nStart2 = nStart1 + Len("www.bibleserver.com/text/")
+                nEnd2 = Len(sAdd)
+                sReference = Mid(sAdd, nStart2 + 4, nEnd2 - nStart2 + 1)
+                sVersion = Mid(sAdd, nStart2, nStart2 + 3)
+                If (IsMissing(sVersion)) Then sVersion = "ESV"
+                bReturn = True
+              End If
             End If
           End If
         End If
       End If
+      oRef = BX_StringtToReference(sReference, False)
     End If
   End If
   
-  oRef = BX_StringtToReference(sReference, False)
   
   BX_GetDataFromLink = bReturn
 End Function

@@ -53,11 +53,11 @@ Let me know about bugs or improvements that would be useful at https://github.co
 - For the present Word add-on, there are 2 remaining objectives:
   - Move to a public API like https://bibles.org/pages/api to obtain the online passage.
   - Allow to switch between English and German Bibles and Bible references through the options dialog. At the moment, such a switch needs to happen in the code and has a couple of bugs.
-- A complete redesign of the core functionality of the plugin into a cross-platform library that could also be made available through a public API would be desirable.
+- A complete redesign of the core functionality of the plugin into a cross-platform library that could also be made available through a public API would be desirable. See [blinx-core](https://github.com/renehamburger/blinx-core) for an initial proof of concept.
 - A plugin system could be used to add any data source for retrieving Scripture passages (e.g., BibleWorks, Logos, theWord, free online Bibles & Bible APIs).
 - Custom add-ons for Word, Open Office Writer, Adobe Acrobat, Google Docs could then be added to creating Bible links on the fly.
 - (The [example pdf](docs/Example article with Bible links.pdf) linked above was generated with an alpha version of such an Adobe Acrobat plugin.)
-- I'm currently looking for other developers to join the project before embarking on it.
+- I'm looking for other developers to join the project before embarking on it.
 
 
 * * *

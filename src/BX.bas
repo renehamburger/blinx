@@ -269,7 +269,7 @@ Private Sub BX_CreateAllBlinks(ByVal m_eOptions As BX_Options)
           End If
           If (bOK And sRef <> "") Then
             BX_CheckReference sRef, oRef
-            sRef = BX_ReferenceToString(oRef)
+            sRef = BX_ReferenceToString(oRef, BX_ENGLISH)
             sPass = bx_oB.GetPassage(sRef, sVersion, bAcceptAll)
             If (sPass <> "") Then
               sText = Selection.Text
