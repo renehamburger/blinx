@@ -28,6 +28,7 @@ The following screencast demonstrates the main features of the add-in:
   * <img src="assets/clip_image004.jpg" alt="Create Blink & insert text icon" width="20" style="max-width:100%;"> **Create Blink & insert text (Alt-Shift-B)**: Converts all Bible references within the selection or the closest one to the left of the cursor into a Bible link and inserts the passage into the text.
   * <img src="assets/clip_image005.jpg" alt="Unlink Blinks and hyperlinks icon" width="20" style="max-width:100%;"> **Unlink Blinks and hyperlinks (Alt-U)**: Converts all Blinks or hyperlinks within the selection or the closest one to the left of the cursor into normal text.
   * <img src="assets/clip_image006.jpg" alt="Open Blinx options dialog icon" width="20" style="max-width:100%;"> **Open Blinx options dialog (Ctrl-Alt-Shift-B)**:
+    - Language of Bible references: English, German
     - Bible translation: ESV, NIV, NASB, KJV, ...
     - Online Bible for hyperlinks
     - Length of passage tooltips
@@ -52,7 +53,6 @@ Let me know about bugs or improvements that would be useful at https://github.co
 ### Roadmap
 - For the present Word add-on, there are 2 remaining objectives:
   - Move to a public API like https://bibles.org/pages/api to obtain the online passage.
-  - Allow to switch between English and German Bibles and Bible references through the options dialog. At the moment, such a switch needs to happen in the code and has a couple of bugs.
 - A complete redesign of the core functionality of the plugin into a cross-platform library that could also be made available through a public API would be desirable. See [blinx-core](https://github.com/renehamburger/blinx-core) for an initial proof of concept.
 - A plugin system could be used to add any data source for retrieving Scripture passages (e.g., BibleWorks, Logos, theWord, free online Bibles & Bible APIs).
 - Custom add-ons for Word, Open Office Writer, Adobe Acrobat, Google Docs could then be added to creating Bible links on the fly.
