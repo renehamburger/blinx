@@ -15,7 +15,7 @@ The following screencast demonstrates the main features of the add-in:
 
 ### Installation
 - Close Microsoft Word and Outlook.
-- Copy "Blinx.dot" into your Microsoft Word start-up folder:<sup>[2](#_ftn2)</sup>
+- Copy [Blinx.dot](https://raw.githubusercontent.com/renehamburger/blinx/master/Blinx.dot) into your Microsoft Word start-up folder:<sup>[2](#_ftn2)</sup>
   * Possibly: C:\Program Files\Microsoft Office\OfficeXX\Startup
   * or: C:\Documents and Settings\YOUR_USER_NAME\Application Data\Microsoft\Word\Startup
 - The add-in will now be loaded automatically when Word is started.
