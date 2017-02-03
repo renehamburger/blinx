@@ -266,6 +266,7 @@ Public Function IBible_GotoPassage(ByVal sRef As String, ByVal sVersionIn As Str
         BX_ToggleBrowseMode
       End If
       If (oRef.nVerse1 = 0) Then oRef.nVerse1 = 1
+      m_oBW.SetVersions sVersion & " " & sVersion
       m_oBW.ClipGoToVerse False
       m_oBW.GoToVerse oRef.sBook & " " & oRef.nChapter1 & ":" & oRef.nVerse1
     Else
