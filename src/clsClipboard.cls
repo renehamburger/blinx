@@ -49,7 +49,6 @@ Option Explicit
   Private Declare Function lstrcpy Lib "kernel32" (ByVal lpString1 As Any, ByVal lpString2 As Any) As Long
   Private Declare Function GetClipboardData Lib "user32" (ByVal wFormat As Long) As Long
   Private Declare Function SetClipboardData Lib "user32" (ByVal wFormat As Long, ByVal hMem As Long) As Long
-  Private Declare Function OpenClipboard Lib "user32" (ByVal hwnd As Long) As Long
   Private Declare Function EnumClipboardFormats Lib "user32" (ByVal wFormat As Long) As Long
   Private Declare Function IsClipboardFormatAvailable Lib "user32" (ByVal wFormat As Long) As Long
   Private Declare Function RegisterClipboardFormat Lib "user32" Alias "RegisterClipboardFormatA" (ByVal lpString As String) As Long
