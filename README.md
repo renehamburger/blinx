@@ -15,9 +15,7 @@ The following screencast demonstrates the main features of the add-in:
 
 ### Installation
 - Close Microsoft Word and Outlook.
-- Copy [Blinx.dot](https://raw.githubusercontent.com/renehamburger/blinx/master/Blinx.dot) into your Microsoft Word start-up folder:<sup>[2](#_ftn2)</sup>
-  * Possibly: C:\Program Files\Microsoft Office\OfficeXX\Startup
-  * or: C:\Documents and Settings\YOUR_USER_NAME\Application Data\Microsoft\Word\Startup
+- Copy [Blinx.dot](https://raw.githubusercontent.com/renehamburger/blinx/master/Blinx.dot) into your Microsoft Word start-up folder: `C:\Users\[User Name]\AppData\Roaming\Microsoft\Word\STARTUP`. (If you have changed the startup folder or if you are on Windows XP, see https://wordaddins.com/support/how-to-find-the-word-startup-folder/.)
 - The add-in will now be loaded automatically when Word is started.
 
 ### Usage
@@ -33,7 +31,7 @@ The following screencast demonstrates the main features of the add-in:
     - Online Bible for hyperlinks
     - Length of passage tooltips
     - Reset Blinx (which can solve a few issues)
-    - Abbreviations for all Bible books, which can be edited with a double-click.<sup>[3](#_ftn3)</sup>
+    - Abbreviations for all Bible books, which can be edited with a double-click.<sup>[2](#_ftn2)</sup>
 
 ### Copyright
 - The current version of Blinx obtains Bible passages either from BibleWorks (if installed) or otherwise from [www.biblegateway.com](http://www.biblegateway.com/) for this initial proof of concept.
@@ -66,10 +64,4 @@ Let me know about bugs or improvements that would be useful at https://github.co
 The add-in should also work with some earlier versions of these applications.
 
 <a name="_ftn2"></a>[2]
-The location of the start-up folder can also be checked and changed in Word:
-- Word 2003: "Tools | Options | File Locations | Startup"
-- Word 2007: "Office Button | Word Options | Advanced tab | File Locations"
-- Word 2010: "File | Options | Advanced tab | File Locations"
-
-<a name="_ftn3"></a>[3]
 Blinx will only recognize the abbreviations in this list (allowing for variations like Roman numerals instead of 1/2/3 before book names, additional full stops, additional or fewer spaces…) Chapter-verse separator can be either ":" or ".".  The book name must be separated from the rest of the reference by at least 1 space or 1 full stop (e.g. "Jn 3:16" or "Jn.3:16").
