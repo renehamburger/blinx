@@ -229,7 +229,7 @@ Private Sub BX_CreateAllBlinks(ByVal m_eOptions As BX_Options)
         
         If (Not bSkip) Then
           nOldLength = Selection.End - Selection.Start
-          BX_CheckReference Selection.Text, oRef
+          BX_CheckReference Selection.Text, oRefbook
           BX_CompletePartialReference oRef
           sRef = BX_ReferenceToString(oRef)
           If (sRef <> "" And Not bAcceptAll) Then
@@ -646,8 +646,10 @@ End Sub
 Private Function BX_ExpandReference() As Boolean
   Dim bValid As Boolean
   Dim bTemp As Boolean
+  Dim bValidBooknumber As Boolean
   Dim nI As Long
   Dim nJ As Long
+  Dim nK As Long
   Dim nCount As Long
   'Dim nMoveRight As Long
   Dim nSuperScript As Long
@@ -689,15 +691,31 @@ Private Function BX_ExpandReference() As Boolean
   If (Not bTemp) Then
     '--Extend to left through letters
     BX_ExpandSelectionType BX_LEFT, BX_LETTER
-    '--Extend to left through 1 space & book number
-    nI = BX_ExpandSelectionType(BX_LEFT, BX_SPACE, 1)
-    nJ = BX_ExpandSelectionType(BX_LEFT, BX_BOOK_NUMBER)
-    If (nJ = 0) Then
-      Selection.Start = Selection.Start + nI + nJ
-    ElseIf (nJ > 1) Then
-      If (LCase(Left(Selection.Text, nJ)) <> "ii") Then
-        Selection.Start = Selection.Start + nI + nJ
+    '--Extend to left through 0-2 spaces & 0 or 1 full stop & book number
+    nI = BX_ExpandSelectionType(BX_LEFT, BX_SPACE, 2)
+    If (BX_ExpandSelectionString(".", BX_LEFT, 1)) Then
+      nJ = 1
+    Else
+      nJ = 0
+    End If
+    nK = BX_ExpandSelectionType(BX_LEFT, BX_BOOK_NUMBER)
+    bValidBooknumber = True
+    Select Case nK
+    Case 0
+        bValidBooknumber = False
+    Case 2
+      If (LCase(Left(Selection.Text, 2)) <> "ii") Then
+        bValidBooknumber = False
       End If
+    Case 3
+      If (LCase(Left(Selection.Text, 3)) <> "iii") Then
+        bValidBooknumber = False
+      End If
+    Case Is > 3
+        bValidBooknumber = False
+    End Select
+    If (Not bValidBooknumber) Then
+      Selection.Start = Selection.Start + nI + nJ + nK
     End If
   End If
   Do While (BX_TestChar(Left(Selection.Text, 1), BX_SPACE))
