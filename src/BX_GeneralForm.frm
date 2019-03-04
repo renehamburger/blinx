@@ -17,7 +17,6 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Attribute VB_TemplateDerived = False
 Attribute VB_Customizable = False
-'<VBA_INSPECTOR_RUN />
 Option Explicit
 Option Base 1
 '==============================================================================
@@ -81,53 +80,18 @@ Public Function InputBox(ByVal sText As String, Optional sCaption As String = "B
   tbx_Edit.Height = (Round(tbx_Edit.Width / 260 + 0.5)) * 15.75
   tbx_Edit.Width = 260
   tbx_Edit.Visible = True
-  '<VBA_INSPECTOR>
-  ' <DEPRECATION>
-  '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-  '   <ITEM>[mso]Assistant.Left</ITEM>
-  '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-  ' </DEPRECATION>
-  '</VBA_INSPECTOR>
   tbx_Edit.Left = lbl_Text.Left
-  '<VBA_INSPECTOR>
-  ' <DEPRECATION>
-  '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-  '   <ITEM>[mso]Assistant.Top</ITEM>
-  '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-  ' </DEPRECATION>
-  '</VBA_INSPECTOR>
   tbx_Edit.Top = lbl_Text.Top + lbl_Text.Height + 10
   btn_OK.Caption = "OK"
   btn_OK.Visible = True
   btn_OK.Enabled = True
-  '<VBA_INSPECTOR>
-  ' <DEPRECATION>
-  '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-  '   <ITEM>[mso]Assistant.Top</ITEM>
-  '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-  ' </DEPRECATION>
-  '</VBA_INSPECTOR>
   btn_OK.Top = tbx_Edit.Top + tbx_Edit.Height + 10
   btn_Cancel.Caption = "Cancel"
   btn_Cancel.Visible = True
   btn_Cancel.Enabled = True
-  '<VBA_INSPECTOR>
-  ' <DEPRECATION>
-  '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-  '   <ITEM>[mso]Assistant.Top</ITEM>
-  '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-  ' </DEPRECATION>
-  '</VBA_INSPECTOR>
   btn_Cancel.Top = tbx_Edit.Top + tbx_Edit.Height + 10
   lbl_Text.BackColor = &HBBAA88
   Me.BackColor = &HBBAA88
-  '<VBA_INSPECTOR>
-  ' <DEPRECATION>
-  '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-  '   <ITEM>[mso]Assistant.Top</ITEM>
-  '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-  ' </DEPRECATION>
-  '</VBA_INSPECTOR>
   Me.Height = btn_OK.Top + btn_OK.Height + 28
   Me.Caption = sCaption
   tbx_Edit.SetFocus
@@ -158,50 +122,15 @@ Public Sub ErrorBox(ByVal sText As String, Optional sCaption As String = "Blinx"
   tbx_Edit.Height = (Round(tbx_Edit.Width / 260 + 0.5)) * 15.75
   tbx_Edit.Width = 260
   tbx_Edit.Visible = True
-  '<VBA_INSPECTOR>
-  ' <DEPRECATION>
-  '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-  '   <ITEM>[mso]Assistant.Left</ITEM>
-  '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-  ' </DEPRECATION>
-  '</VBA_INSPECTOR>
   tbx_Edit.Left = lbl_Text.Left
-  '<VBA_INSPECTOR>
-  ' <DEPRECATION>
-  '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-  '   <ITEM>[mso]Assistant.Top</ITEM>
-  '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-  ' </DEPRECATION>
-  '</VBA_INSPECTOR>
   tbx_Edit.Top = lbl_Text.Top + lbl_Text.Height + 10
   btn_OK.Caption = "OK"
   btn_OK.Visible = True
   btn_OK.Enabled = True
-  '<VBA_INSPECTOR>
-  ' <DEPRECATION>
-  '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-  '   <ITEM>[mso]Assistant.Top</ITEM>
-  '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-  ' </DEPRECATION>
-  '</VBA_INSPECTOR>
   btn_OK.Top = tbx_Edit.Top + tbx_Edit.Height + 10
-  '<VBA_INSPECTOR>
-  ' <DEPRECATION>
-  '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-  '   <ITEM>[mso]Assistant.Left</ITEM>
-  '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-  ' </DEPRECATION>
-  '</VBA_INSPECTOR>
   btn_OK.Left = Me.Width - btn_OK.Width - 10
   btn_Cancel.Visible = False
   btn_Cancel.Enabled = True
-  '<VBA_INSPECTOR>
-  ' <DEPRECATION>
-  '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-  '   <ITEM>[mso]Assistant.Top</ITEM>
-  '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-  ' </DEPRECATION>
-  '</VBA_INSPECTOR>
   Me.Height = btn_OK.Top + btn_OK.Height + 28
   Me.Caption = sCaption
   Me.BackColor = &HC0C0FF
@@ -219,55 +148,13 @@ Public Sub SetText(ByVal sText As String)
   lbl_Text.Width = 260
   lbl_Text.Caption = sText
   lbl_Text.Width = 260
-  '<VBA_INSPECTOR>
-  ' <DEPRECATION>
-  '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-  '   <ITEM>[mso]Assistant.Top</ITEM>
-  '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-  ' </DEPRECATION>
-  '</VBA_INSPECTOR>
   btn_Cancel.Top = lbl_Text.Top + lbl_Text.Height + 10
-  '<VBA_INSPECTOR>
-  ' <DEPRECATION>
-  '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-  '   <ITEM>[mso]Assistant.Top</ITEM>
-  '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-  ' </DEPRECATION>
-  '</VBA_INSPECTOR>
   btn_OK.Top = lbl_Text.Top + lbl_Text.Height + 10
-  '<VBA_INSPECTOR>
-  ' <DEPRECATION>
-  '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-  '   <ITEM>[mso]Assistant.Top</ITEM>
-  '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-  ' </DEPRECATION>
-  '</VBA_INSPECTOR>
   Me.Height = btn_OK.Top + btn_OK.Height + 28
   If (btn_Cancel.Enabled) Then
-    '<VBA_INSPECTOR>
-    ' <DEPRECATION>
-    '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-    '   <ITEM>[mso]Assistant.Left</ITEM>
-    '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-    ' </DEPRECATION>
-    '</VBA_INSPECTOR>
     btn_Cancel.Left = Me.Width - btn_Cancel.Width - 10
-    '<VBA_INSPECTOR>
-    ' <DEPRECATION>
-    '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-    '   <ITEM>[mso]Assistant.Left</ITEM>
-    '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-    ' </DEPRECATION>
-    '</VBA_INSPECTOR>
     btn_OK.Left = btn_Cancel.Left - btn_OK.Width - 10
   Else
-    '<VBA_INSPECTOR>
-    ' <DEPRECATION>
-    '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-    '   <ITEM>[mso]Assistant.Left</ITEM>
-    '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-    ' </DEPRECATION>
-    '</VBA_INSPECTOR>
     btn_OK.Left = Width - btn_OK.Width - 10
   End If
 End Sub

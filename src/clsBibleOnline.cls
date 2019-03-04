@@ -10,7 +10,6 @@ Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 Attribute VB_TemplateDerived = False
 Attribute VB_Customizable = False
-'<VBA_INSPECTOR_RUN />
 Option Explicit
 Option Base 1
 '==============================================================================

@@ -1,5 +1,4 @@
 Attribute VB_Name = "GlobalStuff"
-'<VBA_INSPECTOR_RUN />
 Option Explicit
 Option Base 1
 
@@ -843,36 +842,15 @@ Public Sub BX_CloneFont(ByVal oIn As Font, ByVal oOut As Font, Optional bFindPar
   bx_sFunction = "BX_CloneFont"
   
   oOut.AllCaps = oIn.AllCaps
-  '<VBA_INSPECTOR>
-  ' <DEPRECATION>
-  '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-  '   <ITEM>[mso]ChartFont.Bold</ITEM>
-  '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-  ' </DEPRECATION>
-  '</VBA_INSPECTOR>
   oOut.Bold = oIn.Bold
   oOut.BoldBi = oIn.BoldBi
   oOut.Color = oIn.Color
-  '<VBA_INSPECTOR>
-  ' <DEPRECATION>
-  '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-  '   <ITEM>[mso]ChartFont.ColorIndex</ITEM>
-  '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-  ' </DEPRECATION>
-  '</VBA_INSPECTOR>
   oOut.ColorIndex = oIn.ColorIndex
   oOut.ColorIndexBi = oIn.ColorIndexBi
   oOut.DoubleStrikeThrough = oIn.DoubleStrikeThrough
   oOut.Emboss = oIn.Emboss
   oOut.Engrave = oIn.Engrave
   oOut.Hidden = oIn.Hidden
-  '<VBA_INSPECTOR>
-  ' <DEPRECATION>
-  '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-  '   <ITEM>[mso]ChartFont.Italic</ITEM>
-  '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-  ' </DEPRECATION>
-  '</VBA_INSPECTOR>
   oOut.Italic = oIn.Italic
   oOut.ItalicBi = oIn.ItalicBi
   oOut.Kerning = oIn.Kerning
@@ -884,48 +862,13 @@ Public Sub BX_CloneFont(ByVal oIn As Font, ByVal oOut As Font, Optional bFindPar
   oOut.Position = oIn.Position
   oOut.Scaling = oIn.Scaling
   oOut.Shadow = oIn.Shadow
-  '<VBA_INSPECTOR>
-  ' <DEPRECATION>
-  '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-  '   <ITEM>[mso]ChartFont.Size</ITEM>
-  '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-  ' </DEPRECATION>
-  '</VBA_INSPECTOR>
   oOut.Size = oIn.Size
   oOut.SizeBi = oIn.SizeBi
   oOut.SmallCaps = oIn.SmallCaps
   oOut.Spacing = oIn.Spacing
-  '<VBA_INSPECTOR>
-  ' <DEPRECATION>
-  '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-  '   <ITEM>[mso]ChartFont.StrikeThrough</ITEM>
-  '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-  ' </DEPRECATION>
-  '</VBA_INSPECTOR>
   oOut.StrikeThrough = oIn.StrikeThrough
-  '<VBA_INSPECTOR>
-  ' <DEPRECATION>
-  '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-  '   <ITEM>[mso]ChartFont.Subscript</ITEM>
-  '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-  ' </DEPRECATION>
-  '</VBA_INSPECTOR>
   oOut.Subscript = oIn.Subscript
-  '<VBA_INSPECTOR>
-  ' <DEPRECATION>
-  '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-  '   <ITEM>[mso]ChartFont.Superscript</ITEM>
-  '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-  ' </DEPRECATION>
-  '</VBA_INSPECTOR>
   oOut.Superscript = oIn.Superscript
-  '<VBA_INSPECTOR>
-  ' <DEPRECATION>
-  '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-  '   <ITEM>[mso]ChartFont.Underline</ITEM>
-  '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-  ' </DEPRECATION>
-  '</VBA_INSPECTOR>
   oOut.Underline = oIn.Underline
   oOut.UnderlineColor = oIn.UnderlineColor
 

@@ -1,5 +1,4 @@
 Attribute VB_Name = "BX"
-'<VBA_INSPECTOR_RUN />
 Option Explicit
 Option Base 1
 '==============================================================================
@@ -168,13 +167,6 @@ Private Sub BX_CreateAllBlinks(ByVal m_eOptions As BX_Options)
   bAcceptAll = False
   Set oLink = Nothing
   nPosDiff = 0
-  '<VBA_INSPECTOR>
-  ' <REMOVED>
-  '   <MESSAGE>Potentially contains removed items in the object model</MESSAGE>
-  '   <ITEM>[mso]FileDialogFilters.Clear</ITEM>
-  '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-  ' </REMOVED>
-  '</VBA_INSPECTOR>
   bx_oRefPositions.Clear
   
   '---If no selection, get main text range
@@ -206,13 +198,6 @@ Private Sub BX_CreateAllBlinks(ByVal m_eOptions As BX_Options)
   '--- taking book (and chapter) from the last successful reference
   If (bCheckForPartial) Then
     bOK = True
-    '<VBA_INSPECTOR>
-    ' <DEPRECATION>
-    '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-    '   <ITEM>[mso]ChartFont.Size</ITEM>
-    '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-    ' </DEPRECATION>
-    '</VBA_INSPECTOR>
     For nI = bx_oRefPositions.Size() To 1 Step -3
       If (bx_oRefPositions.data(nI - 2)) Then
         nPosDiff = nPosDiff + bx_oRefPositions.data(nI - 1)
@@ -228,13 +213,6 @@ Private Sub BX_CreateAllBlinks(ByVal m_eOptions As BX_Options)
         If (Not bSkip) Then
           If (BX_TestChar(Selection.Text, BX_NUMBER)) Then
             '--reject if superscript
-            '<VBA_INSPECTOR>
-            ' <DEPRECATION>
-            '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-            '   <ITEM>[mso]ChartFont.Superscript</ITEM>
-            '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-            ' </DEPRECATION>
-            '</VBA_INSPECTOR>
             If (Selection.Font.Superscript) Then bSkip = True
             '--reject if at beginning of line if not in table, as almost always numbering; verse would be OK if "v1" or "v.1" or "verse 1")
             If (Not bSkip And Selection.Tables.Count() = 0) Then
@@ -335,50 +313,15 @@ Private Function BX_CreateBlinkToLeft(ByVal m_eOptions As BX_Options, Optional B
   '--go back to first number
   Selection.Find.Forward = False
   Selection.Find.Text = "^#"
-  '<VBA_INSPECTOR>
-  ' <CHANGE>
-  '   <MESSAGE>Potentially contains changed items in the object model</MESSAGE>
-  '   <ITEM>[wrd]Find.Execute</ITEM>
-  '   <URL>http://go.microsoft.com/fwlink/?LinkID=215366 </URL>
-  ' </CHANGE>
-  '</VBA_INSPECTOR>
   If (Selection.Find.Execute) Then
     If (Selection.Start >= nStartOfScope) Then
       'If (bPartOfAllLinks) Then nNumberPos = Selection.Start
       nOldStartDiff = nOldStart - Selection.End
       nOldEndDiff = nOldEnd - Selection.End
       If (Selection.Hyperlinks.Count() > 0) Then
-        '<VBA_INSPECTOR>
-        ' <CHANGE>
-        '   <MESSAGE>Potentially contains changed items in the object model</MESSAGE>
-        '   <ITEM>[wrd]Hyperlink.Address</ITEM>
-        '   <URL>http://go.microsoft.com/fwlink/?LinkID=215366 </URL>
-        ' </CHANGE>
-        '</VBA_INSPECTOR>
         If (Len(Selection.Hyperlinks(1).Address) > 30) Then
-          '<VBA_INSPECTOR>
-          ' <CHANGE>
-          '   <MESSAGE>Potentially contains changed items in the object model</MESSAGE>
-          '   <ITEM>[wrd]Hyperlink.Address</ITEM>
-          '   <URL>http://go.microsoft.com/fwlink/?LinkID=215366 </URL>
-          ' </CHANGE>
-          '</VBA_INSPECTOR>
           If (Left(Selection.Hyperlinks(1).Address, 27) = "http://www.biblegateway.com") Then bValid = False
-          '<VBA_INSPECTOR>
-          ' <CHANGE>
-          '   <MESSAGE>Potentially contains changed items in the object model</MESSAGE>
-          '   <ITEM>[wrd]Hyperlink.Address</ITEM>
-          '   <URL>http://go.microsoft.com/fwlink/?LinkID=215366 </URL>
-          ' </CHANGE>
-          '</VBA_INSPECTOR>
           If (Left(Selection.Hyperlinks(1).Address, 28) = "http://www.esvstudybible.org") Then bValid = False 'former website of esvonline
-          '<VBA_INSPECTOR>
-          ' <CHANGE>
-          '   <MESSAGE>Potentially contains changed items in the object model</MESSAGE>
-          '   <ITEM>[wrd]Hyperlink.Address</ITEM>
-          '   <URL>http://go.microsoft.com/fwlink/?LinkID=215366 </URL>
-          ' </CHANGE>
-          '</VBA_INSPECTOR>
           If (Left(Selection.Hyperlinks(1).Address, 24) = "http://www.esvonline.org") Then bValid = False
           If (Not bValid) Then
             BX_GetDataFromLink Selection, bx_oLastValidRef
@@ -508,30 +451,9 @@ Private Function BX_ReplaceBWHyperlinks(ByVal m_eOptions As BX_Options) As Integ
   
   For Each oLink In ActiveDocument.Hyperlinks
     If (oLink.Range.Start >= oRange.Start And oLink.Range.End <= oRange.End) Then
-      '<VBA_INSPECTOR>
-      ' <CHANGE>
-      '   <MESSAGE>Potentially contains changed items in the object model</MESSAGE>
-      '   <ITEM>[wrd]Hyperlink.Address</ITEM>
-      '   <URL>http://go.microsoft.com/fwlink/?LinkID=215366 </URL>
-      ' </CHANGE>
-      '</VBA_INSPECTOR>
       If (Left(oLink.Address, 14) = "javascript:R('") Then
         oLink.Range.Select
-        '<VBA_INSPECTOR>
-        ' <CHANGE>
-        '   <MESSAGE>Potentially contains changed items in the object model</MESSAGE>
-        '   <ITEM>[wrd]Hyperlink.Address</ITEM>
-        '   <URL>http://go.microsoft.com/fwlink/?LinkID=215366 </URL>
-        ' </CHANGE>
-        '</VBA_INSPECTOR>
         nPos = InStr(oLink.Address, "')")
-        '<VBA_INSPECTOR>
-        ' <CHANGE>
-        '   <MESSAGE>Potentially contains changed items in the object model</MESSAGE>
-        '   <ITEM>[wrd]Hyperlink.Address</ITEM>
-        '   <URL>http://go.microsoft.com/fwlink/?LinkID=215366 </URL>
-        ' </CHANGE>
-        '</VBA_INSPECTOR>
         sRef = Mid(oLink.Address, 15, nPos - 15)
         BX_ReplaceReservedCharacters sRef
         sPass = bx_oB.GetPassage(sRef, sVersion & " " & sVersion, True)
@@ -660,13 +582,6 @@ End If
     'Selection.EndnoteOptions.Location = wdEndOfDocument
     Set oEndnote = Selection.Endnotes.Add(Selection.Range, ChrW(&H203A&))
     Selection.MoveLeft Unit:=wdWord, Count:=1, Extend:=wdExtend
-    '<VBA_INSPECTOR>
-    ' <DEPRECATION>
-    '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-    '   <ITEM>[mso]ChartFont.Size</ITEM>
-    '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-    ' </DEPRECATION>
-    '</VBA_INSPECTOR>
     Selection.Font.Size = 6
     Selection.Start = Selection.End
     bx_oClip.SetHTML sHTML
@@ -697,42 +612,14 @@ Private Function AddHyperlink(ByVal sAddress As String, ByVal sSubAddress As Str
   
   ' Due to a bug in Word 2007 (and possibly others?), the add hyperlink function call crashes, if TextToDisplay is included
   If (Application.Version <> "12.0") Then
-    '<VBA_INSPECTOR>
-    ' <CHANGE>
-    '   <MESSAGE>Potentially contains changed items in the object model</MESSAGE>
-    '   <ITEM>[wrd]Hyperlinks.Add</ITEM>
-    '   <URL>http://go.microsoft.com/fwlink/?LinkID=215366 </URL>
-    ' </CHANGE>
-    '</VBA_INSPECTOR>
     Set oLink = Selection.Hyperlinks.Add(Anchor:=Selection.Range, Address:=sAddress, SubAddress:=sSubAddress, ScreenTip:=sScreenTip, Target:=sTarget, TextToDisplay:=sTextToDisplay)
   Else
-    '<VBA_INSPECTOR>
-    ' <CHANGE>
-    '   <MESSAGE>Potentially contains changed items in the object model</MESSAGE>
-    '   <ITEM>[wrd]Hyperlinks.Add</ITEM>
-    '   <URL>http://go.microsoft.com/fwlink/?LinkID=215366 </URL>
-    ' </CHANGE>
-    '</VBA_INSPECTOR>
     Set oLink = Selection.Hyperlinks.Add(Anchor:=Selection.Range, Address:=sAddress, SubAddress:=sSubAddress, ScreenTip:=sScreenTip, Target:=sTarget)
     If (Not oLink Is Nothing) Then oLink.TextToDisplay = sTextToDisplay
   End If
   
   If (Err.Number > 0) Then
-    '<VBA_INSPECTOR>
-    ' <REMOVED>
-    '   <MESSAGE>Potentially contains removed items in the object model</MESSAGE>
-    '   <ITEM>[mso]FileDialogFilters.Clear</ITEM>
-    '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-    ' </REMOVED>
-    '</VBA_INSPECTOR>
     Err.Clear
-    '<VBA_INSPECTOR>
-    ' <CHANGE>
-    '   <MESSAGE>Potentially contains changed items in the object model</MESSAGE>
-    '   <ITEM>[wrd]Hyperlinks.Add</ITEM>
-    '   <URL>http://go.microsoft.com/fwlink/?LinkID=215366 </URL>
-    ' </CHANGE>
-    '</VBA_INSPECTOR>
     If (oLink Is Nothing) Then Set oLink = Selection.Hyperlinks.Add(Anchor:=Selection.Range, Address:=sAddress, SubAddress:=sSubAddress, ScreenTip:=sScreenTip, Target:=sTarget)
     If (Not oLink Is Nothing) Then oLink.TextToDisplay = sTextToDisplay
   End If
@@ -766,13 +653,6 @@ Private Function BX_ExpandReference() As Boolean
   Dim nSuperScript As Long
   
   bValid = True
-  '<VBA_INSPECTOR>
-  ' <DEPRECATION>
-  '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-  '   <ITEM>[mso]ChartFont.Superscript</ITEM>
-  '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-  ' </DEPRECATION>
-  '</VBA_INSPECTOR>
   nSuperScript = Selection.Font.Superscript
         
   '--Extend to left from final number
@@ -802,13 +682,6 @@ Private Function BX_ExpandReference() As Boolean
   BX_ExpandSelectionString ".", BX_LEFT, 1
   '--Extend to left for book names with spaces (e.g. "Song of Songs")
   bTemp = False
-  '<VBA_INSPECTOR>
-  ' <DEPRECATION>
-  '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-  '   <ITEM>[mso]ChartFont.Size</ITEM>
-  '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-  ' </DEPRECATION>
-  '</VBA_INSPECTOR>
   For nI = 1 To bx_oCompoundBooks.Size()
     bTemp = BX_ExpandSelectionString(bx_oCompoundBooks.data(nI), BX_LEFT)
     If (bTemp) Then Exit For
@@ -842,13 +715,6 @@ Private Function BX_ExpandReference() As Boolean
   End If
 
   '--Check for superscript
-  '<VBA_INSPECTOR>
-  ' <DEPRECATION>
-  '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-  '   <ITEM>[mso]ChartFont.Superscript</ITEM>
-  '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-  ' </DEPRECATION>
-  '</VBA_INSPECTOR>
   If (Selection.Font.Superscript <> nSuperScript) Then bValid = False
   
   BX_ExpandReference = bValid
@@ -1230,13 +1096,6 @@ Sub BX_HandleFindParameters(ByVal bBefore As Boolean)
       vForward = .Forward
       vWrap = .Wrap
       vFormat = .Format
-      '<VBA_INSPECTOR>
-      ' <DEPRECATION>
-      '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-      '   <ITEM>[mso]IFind.MatchCase</ITEM>
-      '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-      ' </DEPRECATION>
-      '</VBA_INSPECTOR>
       bMatchCase = .MatchCase
       bMatchWholeWord = .MatchWholeWord
       bMatchKashida = .MatchKashida
@@ -1245,22 +1104,8 @@ Sub BX_HandleFindParameters(ByVal bBefore As Boolean)
       bMatchControl = .MatchControl
       bMatchWildcards = .MatchWildcards
       bMatchSoundsLike = .MatchSoundsLike
-      '<VBA_INSPECTOR>
-      ' <DEPRECATION>
-      '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-      '   <ITEM>[mso]FileSearch.MatchAllWordForms</ITEM>
-      '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-      ' </DEPRECATION>
-      '</VBA_INSPECTOR>
       bMatchAllWordForms = .MatchAllWordForms
       
-      '<VBA_INSPECTOR>
-      ' <DEPRECATION>
-      '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-      '   <ITEM>[mso]IFind.MatchCase</ITEM>
-      '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-      ' </DEPRECATION>
-      '</VBA_INSPECTOR>
       .MatchCase = False
       .MatchWholeWord = False
       .MatchKashida = False
@@ -1269,13 +1114,6 @@ Sub BX_HandleFindParameters(ByVal bBefore As Boolean)
       .MatchControl = False
       .MatchWildcards = False
       .MatchSoundsLike = False
-      '<VBA_INSPECTOR>
-      ' <DEPRECATION>
-      '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-      '   <ITEM>[mso]FileSearch.MatchAllWordForms</ITEM>
-      '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-      ' </DEPRECATION>
-      '</VBA_INSPECTOR>
       .MatchAllWordForms = False
       .ClearFormatting
       .Wrap = wdFindStop
@@ -1287,13 +1125,6 @@ Sub BX_HandleFindParameters(ByVal bBefore As Boolean)
       .Forward = vForward
       .Wrap = vWrap
       .Format = vFormat
-      '<VBA_INSPECTOR>
-      ' <DEPRECATION>
-      '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-      '   <ITEM>[mso]IFind.MatchCase</ITEM>
-      '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-      ' </DEPRECATION>
-      '</VBA_INSPECTOR>
       .MatchCase = bMatchCase
       .MatchWholeWord = bMatchWholeWord
       .MatchKashida = bMatchKashida
@@ -1302,13 +1133,6 @@ Sub BX_HandleFindParameters(ByVal bBefore As Boolean)
       .MatchControl = bMatchControl
       .MatchWildcards = bMatchWildcards
       .MatchSoundsLike = bMatchSoundsLike
-      '<VBA_INSPECTOR>
-      ' <DEPRECATION>
-      '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-      '   <ITEM>[mso]FileSearch.MatchAllWordForms</ITEM>
-      '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-      ' </DEPRECATION>
-      '</VBA_INSPECTOR>
       .MatchAllWordForms = bMatchAllWordForms
     End With
     If (vFormat) Then

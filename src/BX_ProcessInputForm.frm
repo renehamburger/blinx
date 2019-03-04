@@ -16,7 +16,6 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Attribute VB_TemplateDerived = False
 Attribute VB_Customizable = False
-'<VBA_INSPECTOR_RUN />
 Option Explicit
 Option Base 1
 '==============================================================================
@@ -52,13 +51,6 @@ Private Sub UserForm_Activate()
   If (bFirstRun) Then
     bFirstRun = False
     Top = 4
-    '<VBA_INSPECTOR>
-    ' <DEPRECATION>
-    '   <MESSAGE>Potentially contains deprecated items in the object model</MESSAGE>
-    '   <ITEM>[mso]Assistant.Left</ITEM>
-    '   <URL>http://go.microsoft.com/fwlink/?LinkID=215358 /URL>
-    ' </DEPRECATION>
-    '</VBA_INSPECTOR>
     Left = ActiveWindow.Left + (ActiveWindow.Width / 2) - Width / 2
     If (Left < 0) Then Left = 10
   End If
