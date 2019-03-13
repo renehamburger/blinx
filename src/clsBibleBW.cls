@@ -134,6 +134,7 @@ Public Sub IBible_EndProcess()
 End Sub
 
 Public Function IBible_CheckPassage(ByVal sRef As String, ByVal sVersionIn As String, Optional ByVal bFirstVerseOnly As Boolean = False) As Boolean
+  bx_sFunction = "clsBibleBW_CheckPassage"
   Dim oRef As BX_Reference
   Dim sVersion As String
   

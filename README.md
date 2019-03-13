@@ -11,7 +11,7 @@ The following screencast demonstrates the main features of the add-in:
 ### Requirements<sup>[**1**](#_ftn1)</sup>
 - Windows (Windows XP+)
 - Microsoft Word (2003+)
-- Internet Explorer 8+ with an active internet connection or alternatively BibleWorks (7+)
+- Internet Explorer 8+ with an active internet connection or alternatively BibleWorks (7+) or Logos (4+).
 
 ### Installation
 - Close Microsoft Word and Outlook.
@@ -35,15 +35,17 @@ The following screencast demonstrates the main features of the add-in:
 - If a _text is selected_ that contains Bible reference hyperlinks from a Logos export and BibleWorks resource, these will be converted too.
 
 ### Copyright
-- The current version of Blinx obtains Bible passages either from BibleWorks (if installed) or otherwise from [www.biblegateway.com](http://www.biblegateway.com/) for this initial proof of concept.
+- The current version of Blinx obtains Bible passages either from BibleWorks or Logos (if installed) or otherwise from [www.biblegateway.com](http://www.biblegateway.com/) for this initial proof of concept.
 - All modern Bible versions are copyrighted. See [www.biblegateway.com/version](http://www.biblegateway.com/version) for copyright regulations of various Bible versions. For extensive quotes in a publication (usually if over 200 verses or more than 10% of a biblical book), a permission in writing needs to be obtained from the appropriate copyright owner.
-- Biblegateway.com and BibleWorks do not _appear_ to require any additional copyright notice for quotations acquired through their website/software.
+- Copyright notices will need to be added manually, especially if the document is to be shared.
 
-### Known issues
+### Limitiations & known issues
+- The support for Logos is experimental. The "Copy Bible Verses" settings from within Logos are used automatically to determine the Bible version and format. The Bible version in Blinx should then be selected to match this one. And the Logos format is not yet preserved on insert.
+- It is not yet possible to choose the app that should be used. BibleWorks will be checked first and, if not present, Logos and, if not present either, BibleGateway via Internet Explorer.
 - The reference links contain a special Unicode space between the book name and the chapter number. If it is not displayed as a space, choose an appropriate font (e.g. Times New Roman, Arial, Tahoma, Calibri ...)
 - A bug in BibleWorks means that every creation of a Blink will reset the display versions to what they were at the start-up of BibleWorks. If you restart (or just close) BibleWorks, the current display versions will be the new default versions for every following Blink creation.
 - Running Blinx might reset some formatting options of a previous search/replace in Word.
-- The initial start-up of BibleWorks or Internet Explorer (hidden) can take up to 20 sec.
+- The initial start-up of BibleWorks, Logos or Internet Explorer (hidden) can take up to 20 sec on slower computers.
 - BibleGateway limits passage lookups to about 5500 words.
 - Further issues are mentioned in [Issues.doc](docs/Issues.doc).
 

@@ -120,14 +120,15 @@ Private Function BX_InitializeBible() As Boolean
   '--Create BW object first
   If (bx_oB Is Nothing) Then Set bx_oB = New clsBibleBW
   
-  '--If connection to BW application cannot established, create IE object
+  '--Create Logos object next
+  If (Not bx_oB.IsApplicationOK()) Then Set bx_oB = New clsBibleLogos
+  
+  '--If connection to local applications cannot established, create IE object
+  If (Not bx_oB.IsApplicationOK()) Then Set bx_oB = New clsBibleOnline
+  
   If (Not bx_oB.IsApplicationOK()) Then
-    Set bx_oB = Nothing
-    Set bx_oB = New clsBibleOnline
-    If (Not bx_oB.IsApplicationOK()) Then
-      bx_oGeneralForm.MsgBox "Neither BibleWorks nor BibleGateway (via Internet Explorer) could be found. Blinx cannot proceed.", vbExclamation
-      bOK = False
-    End If
+    bx_oGeneralForm.MsgBox "Neither BibleWorks nor Logos nor BibleGateway (via Internet Explorer) could be found. Blinx cannot proceed.", vbExclamation
+    bOK = False
   End If
   
   BX_InitializeBible = bOK
