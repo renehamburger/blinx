@@ -4,7 +4,6 @@ Option Base 1
 '==============================================================================
 ' See https://github.com/renehamburger/blinx for source code, manual & license
 '==============================================================================
-
 Private m_eOptions As BX_Options
 
 '==============================================================================
@@ -178,7 +177,7 @@ Private Sub BX_CreateAllBlinks(ByVal m_eOptions As BX_Options)
   Set oRange = Selection.Range
   
   '---Replace all BibleWorks javascript links
-  nLinksCreated = nLinksCreated + BX_ReplaceBWHyperlinks(m_eOptions)
+  nLinksCreated = nLinksCreated + BX_ReplaceKnownBibleHyperlinks(m_eOptions)
       
   '---Loop backwards and replace all complete references
   Selection.Start = Selection.End
@@ -229,7 +228,7 @@ Private Sub BX_CreateAllBlinks(ByVal m_eOptions As BX_Options)
         
         If (Not bSkip) Then
           nOldLength = Selection.End - Selection.Start
-          BX_CheckReference Selection.Text, oRefbook
+          BX_CheckReference Selection.Text, oRef
           BX_CompletePartialReference oRef
           sRef = BX_ReferenceToString(oRef)
           If (sRef <> "" And Not bAcceptAll) Then
@@ -434,8 +433,8 @@ Private Function BX_CreateBlinkToLeft(ByVal m_eOptions As BX_Options, Optional B
   BX_CreateBlinkToLeft = eReturn
 End Function
 
-Private Function BX_ReplaceBWHyperlinks(ByVal m_eOptions As BX_Options) As Integer
-  bx_sFunction = "BX_ReplaceBWHyperlinks"
+Private Function BX_ReplaceKnownBibleHyperlinks(ByVal m_eOptions As BX_Options) As Integer
+  bx_sFunction = "BX_ReplaceKnownBibleHyperlinks"
   Dim oLink As Hyperlink
   Dim nPos As Long
   Dim sRef As String
@@ -452,10 +451,22 @@ Private Function BX_ReplaceBWHyperlinks(ByVal m_eOptions As BX_Options) As Integ
   For Each oLink In ActiveDocument.Hyperlinks
     If (oLink.Range.Start >= oRange.Start And oLink.Range.End <= oRange.End) Then
       If (Left(oLink.Address, 14) = "javascript:R('") Then
+        ' BibleWorks
         oLink.Range.Select
         nPos = InStr(oLink.Address, "')")
         sRef = Mid(oLink.Address, 15, nPos - 15)
         BX_ReplaceReservedCharacters sRef
+        sPass = bx_oB.GetPassage(sRef, sVersion & " " & sVersion, True)
+        oLink.Range.Select
+        BX_FillBlink m_eOptions, oLink.TextToDisplay, sPass, sRef, sVersion
+        nLinksCreated = nLinksCreated + 1
+      ElseIf (Left(oLink.Address, 30) = "https://ref.ly/logosref/Bible.") Then
+        ' Logos
+        oLink.Range.Select
+        sRef = Mid(oLink.Address, 31, 99)
+        sRef = RegEx("^(\d)").Replace(sRef, "$1 ")
+        sRef = RegEx("(\w)(\d)").Replace(sRef, "$1 $2")
+        sRef = RegEx("\.").Replace(sRef, ":")
         sPass = bx_oB.GetPassage(sRef, sVersion & " " & sVersion, True)
         oLink.Range.Select
         BX_FillBlink m_eOptions, oLink.TextToDisplay, sPass, sRef, sVersion
@@ -691,9 +702,9 @@ Private Function BX_ExpandReference() As Boolean
   If (Not bTemp) Then
     '--Extend to left through letters
     BX_ExpandSelectionType BX_LEFT, BX_LETTER
-    '--Extend to left through 0-2 spaces & 0 or 1 full stop & book number
+    '--Extend to left through 0-2 spaces & 0 or 1 full stop (for German only) & book number
     nI = BX_ExpandSelectionType(BX_LEFT, BX_SPACE, 2)
-    If (BX_ExpandSelectionString(".", BX_LEFT, 1)) Then
+    If (bx_eLanguage = BX_GERMAN And BX_ExpandSelectionString(".", BX_LEFT, 1)) Then
       nJ = 1
     Else
       nJ = 0

@@ -3,10 +3,10 @@ Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} BX_OptionsForm
    OleObjectBlob   =   "BX_OptionsForm.frx":0000
    Caption         =   "Blinx Options"
    ClientHeight    =   4680
-   ClientLeft      =   48
-   ClientTop       =   372
-   ClientWidth     =   6552
-   StartUpPosition =   2  'CenterScreen
+   ClientLeft      =   45
+   ClientTop       =   375
+   ClientWidth     =   6555
+   StartUpPosition =   2  'Bildschirmmitte
    TypeInfoVer     =   156
 End
 Attribute VB_Name = "BX_OptionsForm"

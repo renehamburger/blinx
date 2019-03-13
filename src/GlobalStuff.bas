@@ -999,6 +999,15 @@ Public Function BX_TestChar(ByVal sString As String, ByVal nCharTypes As Integer
   BX_TestChar = bEqual
 End Function
 
+Public Function RegEx(strPattern As String, Optional GlobalSearch As Boolean, Optional MultiLine As Boolean, Optional IgnoreCase As Boolean) As RegExp
+    Dim objRegEx As New RegExp
+    objRegEx.Global = GlobalSearch
+    objRegEx.MultiLine = MultiLine
+    objRegEx.IgnoreCase = IgnoreCase
+    objRegEx.Pattern = strPattern
+    Set RegEx = objRegEx
+End Function
+
 'Public Function GetTopWindowHandle(Optional sCaption As String = "") As Long
 '  Dim nHandle As Long
 '  Dim sText As String
