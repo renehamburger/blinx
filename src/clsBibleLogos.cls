@@ -18,7 +18,7 @@ Option Base 1
 '==============================================================================
 Implements IBible
 
-Private m_oApp As LogosApplication
+Private m_oApp As Object
 
 '==============================================================================
 '   Initialisation/Termination
@@ -27,11 +27,26 @@ Private m_oApp As LogosApplication
 Private Sub Class_Initialize()
   On Error GoTo FAILED
   bx_sFunction = "clsBibleLogos_Initialize"
-  Dim Launcher As LogosLauncher
-
-  Set Launcher = New LogosLauncher
-  Launcher.LaunchApplication
-  Set m_oApp = Launcher.Application
+  
+  Dim oLauncher As Object
+  Dim vTime As Variant
+  
+  Set oLauncher = CreateObject("LogosBibleSoftware.Launcher")
+  If (oLauncher.Application Is Nothing) Then
+    oLauncher.LaunchApplication
+    vTime = Time
+    Do
+      If ((Time - vTime) * 24 * 3600 > 30) Then
+        Exit Do
+      End If
+      DoEvents
+    Loop Until (Not oLauncher.Application Is Nothing)
+  End If
+  If (oLauncher.Application Is Nothing) Then
+    bx_oGeneralForm.MsgBox "The launch of the Logos app seems to have failed and an online Bible will now be used instead. You can try again by restarting Word and opening Logos first before you use Blinx.", vbExclamation
+  Else
+    Set m_oApp = oLauncher.Application
+  End If
   Exit Sub
 
 FAILED:
@@ -73,8 +88,8 @@ End Function
 
 Public Function IBible_GetPassage(ByRef sRef As String, ByVal sVersionIn As String, Optional ByVal bSuppressError As Boolean = False) As String
   bx_sFunction = "clsBibleLogos_GetPassage"
-  Dim oRequest As LogosCopyBibleVersesRequest
-  Dim oReference As LogosDataTypeReference
+  Dim oRequest As Object
+  Dim oReference As Object
 
   Set oRequest = m_oApp.CopyBibleVerses.CreateRequest()
   Set oReference = m_oApp.DataTypes.GetDataType("bible").ParseReference(sRef)
