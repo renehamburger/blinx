@@ -40,7 +40,7 @@ Private Sub Class_Initialize()
   On Error GoTo FAILED
   
   bx_sFunction = "clsBibleOnline_Initialize"
-  Set m_oIE = CreateObject("InternetExplorer.Application")
+  Set m_oIE = New InternetExplorer
   m_oIE.Visible = False
   m_bFirstRun = True
   
@@ -63,7 +63,7 @@ Public Function IBible_IsApplicationOK() As Boolean
   bx_sFunction = "clsBibleOnline_IsApplicationOK"
   
   If (Not m_oIE Is Nothing) Then
-    If (TypeName(m_oIE) <> "Object") Then
+    If (TypeName(m_oIE) <> "InternetExplorer") Then
       IBible_IsApplicationOK = True
     Else
       IBible_IsApplicationOK = False
