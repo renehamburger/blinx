@@ -42,6 +42,10 @@ Public Function BX_GetPassage(ByRef sRef As String, Optional ByVal vDisplayVer A
   On Error GoTo ERR_HANDLER
   bx_sFunction = "BX_GetPassage"
   
+  Dim sTest As String
+  
+  sTest = Format(1, "00")
+  
   BX_CheckForms
   If (bx_sVariablesLoaded <> "true") Then BX_LoadVariables
   If (BX_InitializeBible()) Then
@@ -110,28 +114,53 @@ Private Function BX_InitializeBible() As Boolean
   bx_sFunction = "BX_InitializeBible"
   Dim sName As String
   Dim bOK As Boolean
+  Dim sPreferredTextSource As String
+  
   bOK = True
 
-  '--Delete object, if connection to application not established
+  sPreferredTextSource = GetSetting("Blinx", "Options", "TextSource", Split(BX_TEXT_SOURCES, "#")(0))
+
+  '--Reset Bible class if it does not have the right type
   If (Not bx_oB Is Nothing) Then
-    If (Not bx_oB.IsApplicationOK()) Then Set bx_oB = Nothing
+    If ((sPreferredTextSource = "BibleWorks" And Not TypeOf bx_oB Is clsBibleBW) Or (sPreferredTextSource = "Logos" And Not TypeOf bx_oB Is clsBibleLogos) Or (sPreferredTextSource = "biblegateway.com" And Not TypeOf bx_oB Is clsBibleOnline)) Then
+      Set bx_oB = Nothing
+    End If
   End If
+
+  If (Not BX_IsBibleOK()) Then
+    '--Create Bible class based on preference
+    Select Case sPreferredTextSource
+      Case "BibleWorks"
+        Set bx_oB = New clsBibleBW
+      Case "Logos"
+        Set bx_oB = New clsBibleLogos
+      Case "biblegateway.com"
+        Set bx_oB = New clsBibleOnline
+    End Select
   
-  '--Create BW object first
-  If (bx_oB Is Nothing) Then Set bx_oB = New clsBibleBW
+    '--If preference was not available, try each one again:
+    If (Not BX_IsBibleOK()) Then Set bx_oB = New clsBibleBW
+    If (Not BX_IsBibleOK()) Then Set bx_oB = New clsBibleLogos
+    If (Not BX_IsBibleOK()) Then Set bx_oB = New clsBibleOnline
   
-  '--Create Logos object next
-  If (Not bx_oB.IsApplicationOK()) Then Set bx_oB = New clsBibleLogos
-  
-  '--If connection to local applications cannot established, create IE object
-  If (Not bx_oB.IsApplicationOK()) Then Set bx_oB = New clsBibleOnline
-  
-  If (Not bx_oB.IsApplicationOK()) Then
-    bx_oGeneralForm.MsgBox "Neither BibleWorks nor Logos nor BibleGateway (via Internet Explorer) could be found. Blinx cannot proceed.", vbExclamation
-    bOK = False
+    '--None available
+    If (Not BX_IsBibleOK()) Then
+      bx_oGeneralForm.MsgBox "Neither BibleWorks nor Logos nor BibleGateway (via Internet Explorer) could be found. Blinx cannot proceed.", vbExclamation
+      bOK = False
+    End If
   End If
-  
+
   BX_InitializeBible = bOK
+End Function
+
+Private Function BX_IsBibleOK() As Boolean
+  If (bx_oB Is Nothing) Then
+    BX_IsBibleOK = False
+  ElseIf (Not bx_oB.IsApplicationOK()) Then
+    BX_IsBibleOK = False
+  Else
+    BX_IsBibleOK = True
+  End If
 End Function
 
 Private Sub BX_CreateAllBlinks(ByVal m_eOptions As BX_Options)
@@ -650,7 +679,7 @@ Private Sub BX_TrimToLength(ByRef sText As String, ByVal nLength As Long)
       If (Mid(sText, nI, 1) <> "#" And Mid(sText, nI, 1) <> "@") Then nJ = nJ + 1
       If (nJ = nLength - 1) Then Exit For
     Next
-    If (nI < Len(sText)) Then sText = Left(sText, nI) & ChrW(&H2026&) '&H2026& is horizontal ellipsis: …
+    If (nI < Len(sText)) Then sText = Left(sText, nI) & ChrW(&H2026&) '&H2026& is horizontal ellipsis: ï¿½
   End If
 End Sub
 

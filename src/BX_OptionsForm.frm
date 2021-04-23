@@ -2,12 +2,12 @@ VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} BX_OptionsForm 
    OleObjectBlob   =   "BX_OptionsForm.frx":0000
    Caption         =   "Blinx Options"
-   ClientHeight    =   4680
+   ClientHeight    =   5190
    ClientLeft      =   45
    ClientTop       =   375
-   ClientWidth     =   6555
-   StartUpPosition =   2  'Bildschirmmitte
-   TypeInfoVer     =   156
+   ClientWidth     =   7290
+   StartUpPosition =   2  'CenterScreen
+   TypeInfoVer     =   168
 End
 Attribute VB_Name = "BX_OptionsForm"
 Attribute VB_Base = "0{FF73C92F-0DBB-4E85-81A8-7329DFA2C45E}{0C69B66C-E3B8-4095-9E55-70B5C957169A}"
@@ -37,7 +37,6 @@ Public Sub ReloadBookList()
   Next
 End Sub
 
-
 Private Sub lbx_books_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
   bx_oEditBookNamesForm.m_nItem = lbx_books.ListIndex
   bx_oEditBookNamesForm.Show
@@ -49,10 +48,11 @@ Private Sub UserForm_Initialize()
   
   AddRows cbx_Language, BX_LANGUAGES
   AddRows cbx_Version, BX_TRANSLATIONS
+  AddRows cbx_TextSource, BX_TEXT_SOURCES
   AddRows cbx_OnlineBible, BX_ONLINE_BIBLES
   AddRows cbx_BlinkPreviewLength, BX_BLINK_PREVIEW_LENGTHS
   
-  tbx_about.Text = "Blinx " & BX_VERSION & " Add-In for Microsoft Word, ©2010-16, Rene Hamburger." & vbCrLf & vbCrLf & _
+  tbx_about.text = "Blinx " & BX_VERSION & " Add-In for Microsoft Word, ©2010-20, Rene Hamburger." & vbCrLf & vbCrLf & _
                    "This program is free software under the MIT License. See http://github.com/renehamburger/blinx for further details & for filing issues. Feel free to distribute it!" & vbCrLf & vbCrLf & _
                    "I have dedicated this work to our Lord and Saviour! And to the fantastic theological college I have had the privilege of training at: www.oakhill.ac.uk. My prayer is that this tool might be as useful to many other Christians and students of God's Word as it has been to me." & vbCrLf & vbCrLf & _
                    "" & vbCrLf & vbCrLf & _
@@ -65,6 +65,7 @@ Private Sub UserForm_Activate()
   bx_sFunction = "OptionsForm_Activate"
   SelectItem cbx_Language, GetSetting("Blinx", "Options", "Language", Split(BX_LANGUAGES, "#")(0))
   SelectItem cbx_Version, GetSetting("Blinx", "Options", "Version", Split(BX_TRANSLATIONS, "#")(0))
+  SelectItem cbx_TextSource, GetSetting("Blinx", "Options", "TextSource", Split(BX_TEXT_SOURCES, "#")(0))
   SelectItem cbx_OnlineBible, GetSetting("Blinx", "Options", "OnlineBible", Split(BX_ONLINE_BIBLES, "#")(0))
   SelectItem cbx_BlinkPreviewLength, GetSetting("Blinx", "Options", "BlinkPreviewLength", Split(BX_BLINK_PREVIEW_LENGTHS, "#")(0))
   BX_LoadVariables
@@ -80,6 +81,7 @@ Private Sub btn_OK_Click()
   bx_sFunction = "btn_OK_Click"
   SaveSetting "Blinx", "Options", "Language", cbx_Language.Value
   SaveSetting "Blinx", "Options", "Version", cbx_Version.Value
+  SaveSetting "Blinx", "Options", "TextSource", cbx_TextSource.Value
   SaveSetting "Blinx", "Options", "OnlineBible", cbx_OnlineBible.Value
   SaveSetting "Blinx", "Options", "BlinkPreviewLength", cbx_BlinkPreviewLength.Value
   BX_LoadVariables
