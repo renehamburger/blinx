@@ -17,7 +17,7 @@ Public Const BX_ONLINE_BIBLES = "esvbible.org#esvbible.org|(ESV with commentary)
 Public Const BX_TEXT_SOURCES = "biblegateway.com#biblegateway.com#Logos#BibleWorks"
 Public Const BX_BLINK_PREVIEW_LENGTHS = "5000#100#200#500#1000#2000#5000#unlimited"
 Public Const BX_VERSION = "0.10"
-Public Const BX_VERSION_FULL = "v0.10.3 (27/01/17)"
+Public Const BX_VERSION_FULL = "v0.11.0 (23 April 2021)"
 Public Const BX_MAX_CHAPTER = 152
 Public Const BX_MAX_VERSE = 176
 Public Const BX_MAX_NUMBER = 176
@@ -1008,15 +1008,3 @@ Public Function RegEx(strPattern As String, Optional GlobalSearch As Boolean, Op
     objRegEx.Pattern = strPattern
     Set RegEx = objRegEx
 End Function
-
-'Public Function GetTopWindowHandle(Optional sCaption As String = "") As Long
-'  Dim nHandle As Long
-'  Dim sText As String
-'  nHandle = GetForegroundWindow()
-'  If (sCaption <> "") Then
-'    sText = Space(260)
-'    GetWindowText nHandle, sText, 260
-'    If (InStr(1, sText, sCaption) = 0) Then nHandle = 0
-'  End If
-'  GetTopWindowHandle = nHandle
-'End Function
