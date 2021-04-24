@@ -12,7 +12,7 @@ Option Base 1
 Public Const BX_LANGUAGES = "English#English|e.g., John 3:16,18#German|e.g., Johannes 3,16.18"
 'Public Const BX_TRANSLATIONS = "ESV#ESV|English Standard Version#NIV|New International Version#NIB|New International Version (UK)#TNIV|Today's New International Version#NIRV|New International Reader's Version#NASB|New American Standard Bible#KJV|King James Version#NLT|New Living Translation#YLT|Young's Literal Translation"
 Public Const BX_TRANSLATIONS = "ESV#ESV|English Standard Version#NIV|New International Version#NIB|New International Version (UK)#TNIV|Today's New International Version#NIRV|New International Reader's Version#NASB|New American Standard Bible#KJV|King James Version" & _
-                "#NLT|New Living Translation#YLT|Young's Literal Translation#BGT|BW LXX/Greek NT#ELB|Elberfelder#ZUR|Zï¿½rcher#SCL|Schlachter 2000#EIN|Einheitsï¿½bersetzung#LUO|Luther 1912#NEU|Neue evangelistische ï¿½bersetzung"  'WTT|BW Hebrew OT# leads to crash...
+                "#NLT|New Living Translation#YLT|Young's Literal Translation#BGT|BW LXX/Greek NT#ELB|Elberfelder#ZUR|Zürcher#SCL|Schlachter 2000#EIN|Einheitsübersetzung#LUO|Luther 1912#NEU|Neue evangelistische Übersetzung"  'WTT|BW Hebrew OT# leads to crash...
 Public Const BX_ONLINE_BIBLES = "esvbible.org#esvbible.org|(ESV with commentary)#biblegateway.com|(All major English Bible versions)#bibleserver.com|(Ideal for German Bible versions)"
 Public Const BX_TEXT_SOURCES = "biblegateway.com#biblegateway.com#Logos#BibleWorks"
 Public Const BX_BLINK_PREVIEW_LENGTHS = "5000#100#200#500#1000#2000#5000#unlimited"
@@ -40,12 +40,12 @@ Public Const BX_DEFAULT_BOOK_NAMES_EN = _
                 "#2 John|2 Jo|2 Jn|2 J#3 John|3 Jo|3 Jn|3 J#Jude|Jud|Jd#Revelation|Rev|Rvl|Rv"
 Public Const BX_DEFAULT_BOOK_NAMES_DE = _
                 "1 Mose|1 Mos|1 Mo|Genesis|Gen|Gn#2 Mose|2 Mos|2 Mo|Exodus|Exod|Ex#3 Mose|3 Mos|3 Mo|Levitikus|Lev|Lv#4 Mose|4 Mos|4 Mo|Numeri|Num|Nm#5 Mose|5 Mos|5 Mo|Deuteronomium|Deut|Dtn|Dt" & _
-                "#Josua|Jos#Richter|Rich|Ri#Rut|Ru#1 Samuel|1 Sam|1 Sa#2 Samuel|2 Sam|2 Sa#1 Kï¿½nige|1 Kï¿½n|1 Kng|1 Kï¿½#2 Kï¿½nige|2 Kï¿½n|2 Kng|2 Kï¿½#1 Chronik|1 Chron|1 Chr#2 Chronik|2 Chron|2 Chr" & _
-                "#Esra|Esr#Nehemia|Neh#Ester|Est#Hiob|Ijob|Job#Psalmen|Psalm|Pslm|Ps#Sprï¿½che|Sprichwï¿½rter|Spr#Prediger|Pred|Kohelet|Koh|Ecclesiastes#Hohelied|Hoheslied|Hld#Jesaja|Jes#Jeremia|Jer#Klagelieder|Klgl" & _
+                "#Josua|Jos#Richter|Rich|Ri#Rut|Ru#1 Samuel|1 Sam|1 Sa#2 Samuel|2 Sam|2 Sa#1 Könige|1 Kön|1 Kng|1 Kö#2 Könige|2 Kön|2 Kng|2 Kö#1 Chronik|1 Chron|1 Chr#2 Chronik|2 Chron|2 Chr" & _
+                "#Esra|Esr#Nehemia|Neh#Ester|Est#Hiob|Ijob|Job#Psalmen|Psalm|Pslm|Ps#Sprüche|Sprichwörter|Spr#Prediger|Pred|Kohelet|Koh|Ecclesiastes#Hohelied|Hoheslied|Hld#Jesaja|Jes#Jeremia|Jer#Klagelieder|Klgl" & _
                 "#Hesekiel|Hesek|Hes|Ezechiel|Ez#Daniel|Dan#Hosea|Hos#Joel#Amos#Obadja|Obad|Obd#Jona#Micha|Mich#Nahum|Nah#Habakuk|Hab#Zefanja|Zef#Haggai|Hagg|Hag#Sacharja|Sach#Maleachi|Mal" & _
-                "#Matthï¿½us|Matt|Mt#Markus|Mark|Mk#Lukas|Luk|Lk#Johannes|Joh#Apostelgeschichte|Apg#Rï¿½mer|Rï¿½m|Rm#1 Korinther|1 Kor|1 Ko#2 Korinther|2 Kor|2 Ko#Galater|Gal" & _
+                "#Matthäus|Matt|Mt#Markus|Mark|Mk#Lukas|Luk|Lk#Johannes|Joh#Apostelgeschichte|Apg#Römer|Röm|Rm#1 Korinther|1 Kor|1 Ko#2 Korinther|2 Kor|2 Ko#Galater|Gal" & _
                 "#Epheser|Eph#Philipper|Phil#Kolosser|Kol#1 Thessalonicher|1 Thess|1 Th#2 Thessalonicher|2 Thess|2 Th#1 Timotheus|1 Tim#2 Timotheus|2 Tim#Titus|Tit" & _
-                "#Philemon|Phlm|Phm#Hebrï¿½er|Hebr|Heb|Hb#Jakobus|Jak|Jk#1 Petrus|1 Petr|1 Pet|1 Pt#2 Petrus|2 Petr|2 Pet|2 Pt" & _
+                "#Philemon|Phlm|Phm#Hebräer|Hebr|Heb|Hb#Jakobus|Jak|Jk#1 Petrus|1 Petr|1 Pet|1 Pt#2 Petrus|2 Petr|2 Pet|2 Pt" & _
                 "#1 Johannes|1 Joh|1 Jo#2 Johannes|2 Joh|2 Jo#3 Johannes|3 Joh|3 Jo#Judas|Jud#Offenbarung|Offb"
 Public Const BX_MAX_SENTENCE_LETTER = "e"
 
@@ -205,6 +205,7 @@ Public bx_oProcessInputForm As BX_ProcessInputForm
 Public bx_oOptionsForm As BX_OptionsForm
 Public bx_oEditBookNamesForm As BX_EditBookNamesForm
 Public bx_oGeneralForm As BX_GeneralForm
+
 '---debug:
 Public bx_sCurrentDocument As String
 
@@ -968,7 +969,7 @@ Public Function BX_TestChar(ByVal sString As String, ByVal nCharTypes As Integer
           bEqual = ((AscW(sChar) >= AscW("a") And AscW(sChar) <= AscW("z")) Or (AscW(sChar) >= AscW("A") And AscW(sChar) <= AscW("Z")))
         Case BX_GERMAN
           bEqual = ((AscW(sChar) >= AscW("a") And AscW(sChar) <= AscW("z")) Or (AscW(sChar) >= AscW("A") And AscW(sChar) <= AscW("Z"))) _
-                    Or (AscW(sChar) = AscW("ï¿½")) Or (AscW(sChar) = AscW("ï¿½")) Or (AscW(sChar) = AscW("ï¿½")) Or (AscW(sChar) = AscW("ï¿½")) Or (AscW(sChar) = AscW("ï¿½")) Or (AscW(sChar) = AscW("ï¿½")) Or (AscW(sChar) = AscW("ï¿½"))
+                    Or (AscW(sChar) = AscW("ä")) Or (AscW(sChar) = AscW("Ä")) Or (AscW(sChar) = AscW("ö")) Or (AscW(sChar) = AscW("Ö")) Or (AscW(sChar) = AscW("ü")) Or (AscW(sChar) = AscW("Ü")) Or (AscW(sChar) = AscW("ß"))
         Case Default 'other
           bEqual = ((AscW(sChar) >= AscW("a") And AscW(sChar) <= AscW("z")) Or (AscW(sChar) >= AscW("A") And AscW(sChar) <= AscW("Z")))
       End Select
@@ -1000,8 +1001,9 @@ Public Function BX_TestChar(ByVal sString As String, ByVal nCharTypes As Integer
   BX_TestChar = bEqual
 End Function
 
-Public Function RegEx(strPattern As String, Optional GlobalSearch As Boolean, Optional MultiLine As Boolean, Optional IgnoreCase As Boolean) As RegExp
-    Dim objRegEx As New RegExp
+Public Function RegEx(strPattern As String, Optional GlobalSearch As Boolean, Optional MultiLine As Boolean, Optional IgnoreCase As Boolean) As Object
+    Dim objRegEx As Object
+    Set objRegEx = CreateObject("vbscript.regexp")
     objRegEx.Global = GlobalSearch
     objRegEx.MultiLine = MultiLine
     objRegEx.IgnoreCase = IgnoreCase
