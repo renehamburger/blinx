@@ -460,6 +460,8 @@ Private Function BX_CreateBlinkToLeft(ByVal m_eOptions As BX_Options, Optional B
 End Function
 
 Private Function BX_ReplaceKnownBibleHyperlinks(ByVal m_eOptions As BX_Options) As Integer
+  On Error GoTo FAILED
+  
   bx_sFunction = "BX_ReplaceKnownBibleHyperlinks"
   Dim oLink As Hyperlink
   Dim nPos As Long
@@ -469,10 +471,10 @@ Private Function BX_ReplaceKnownBibleHyperlinks(ByVal m_eOptions As BX_Options) 
   Dim oRange As Range
   Dim nLinksCreated As Integer
   Dim sVersion As String
-  
+
+  nLinksCreated = 0
   sVersion = GetSetting("Blinx", "Options", "Version", Split(BX_TRANSLATIONS, "#")(0))
   Set oRange = Selection.Range
-  nLinksCreated = 0
   
   For Each oLink In ActiveDocument.Hyperlinks
     If (oLink.Range.Start >= oRange.Start And oLink.Range.End <= oRange.End) Then
@@ -500,8 +502,12 @@ Private Function BX_ReplaceKnownBibleHyperlinks(ByVal m_eOptions As BX_Options) 
       End If
     End If
   Next
-  
-  oRange.Select
+    
+FAILED:
+  If (Not oRange Is Nothing) Then
+    oRange.Select
+  End If
+  BX_ReplaceKnownBibleHyperlinks = nLinksCreated
 End Function
 
 Private Function BX_CreateBlinkHere(ByVal m_eOptions As BX_Options, ByVal sRef As String, ByVal sVersion As String) As Hyperlink
@@ -675,7 +681,7 @@ Private Sub BX_TrimToLength(ByRef sText As String, ByVal nLength As Long)
       If (Mid(sText, nI, 1) <> "#" And Mid(sText, nI, 1) <> "@") Then nJ = nJ + 1
       If (nJ = nLength - 1) Then Exit For
     Next
-    If (nI < Len(sText)) Then sText = Left(sText, nI) & ChrW(&H2026&) '&H2026& is horizontal ellipsis: ï¿½
+    If (nI < Len(sText)) Then sText = Left(sText, nI) & ChrW(&H2026&) '&H2026& is horizontal ellipsis: …
   End If
 End Sub
 
