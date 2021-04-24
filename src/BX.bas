@@ -41,11 +41,7 @@ End Sub
 Public Function BX_GetPassage(ByRef sRef As String, Optional ByVal vDisplayVer As Variant, Optional ByVal bSuppressError As Boolean = False) As String
   On Error GoTo ERR_HANDLER
   bx_sFunction = "BX_GetPassage"
-  
-  Dim sTest As String
-  
-  sTest = Format(1, "00")
-  
+
   BX_CheckForms
   If (bx_sVariablesLoaded <> "true") Then BX_LoadVariables
   If (BX_InitializeBible()) Then
